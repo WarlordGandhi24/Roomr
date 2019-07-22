@@ -45,6 +45,7 @@ class MainPage(webapp2.RequestHandler):
           'login_url': users.create_login_url(self.request.uri),
           'logout_url': users.create_logout_url(self.request.uri),
         }
+        
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
     def post(self):
