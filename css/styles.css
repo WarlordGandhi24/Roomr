@@ -1,3 +1,17 @@
 #main {
+  position: relative;
+  top: 170;
+  text-align: center;
+}
+#login {
+  position: absolute;
+  right: 5px;
+}
+#blurb {
+  font-size: 15px;
+  margin: auto;
+  max-width: 500px;
+  position: relative;
+  top: 190;
   text-align: center;
 }
