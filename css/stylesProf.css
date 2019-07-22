@@ -1,0 +1,10 @@
+#main {
+  position: relative;
+  top: 0;
+  font-size: 24px;
+  text-align: center;
+}
+#pfp {
+  width: 25%;
+  height: 15% auto;
+}
