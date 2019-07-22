@@ -1,3 +1,6 @@
+p {
+  display: inline;
+}
 #main {
   position: relative;
   top: 0;
@@ -10,49 +13,72 @@
 }
 #bio1 {
   position: relative;
-  left: 375;
-  bottom: 360;
+  left: 10;
+  bottom: 175;
 }
 #bio2 {
   position: relative;
-  left: 375;
-  bottom: 340;
+  left: -35;
+  bottom: 135;
 }
 #bio3 {
   position: relative;
-  left: 375;
-  bottom: 320;
+  left: -85;
+  bottom: 95;
 }
 #bio4 {
   position: relative;
-  left: 375;
-  bottom: 300;
+  left: -130;
+  bottom: 55;
 }
 #bio5 {
   position: relative;
-  left: 900;
-  bottom: 480;
+  left: 345;
+  bottom: 175;
 }
-#bio6 {
+#about {
   position: relative;
-  left: 900;
-  bottom: 480;
+  left: 265;
+  bottom: 155;
 }
 #public {
   position: relative;
-  left:880;
-  bottom: 510;
+  left:280;
+  bottom: 175;
 }
 #aboutme {
   position: relative;
-  left: 900;
-  bottom: 480;
+  left: 195;
+  bottom: 0;
 }
 textarea{
   resize: none;
 }
 #submit {
   position: relative;
-  left: 500;
-  bottom: 480;
+  left: -180;
+  bottom: -165;
+}
+#sub1 {
+  position: relative;
+  left: -725;
+  bottom: 165;
+}
+#sub2 {
+  position: relative;
+  left: 425;
+  bottom: 330;
+}
+#sub3 {
+  position: relative;
+  left: 252;
+  bottom: 290;
+}
+#sub4 {
+  position: relative;
+  left: 95;
+  bottom: 247;
+}
+#pref {
+  margin-left: 10px;
 }

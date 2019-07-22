@@ -19,6 +19,7 @@ def root_parent():
 class User(ndb.Model):
     '''A database entry representing a single user.'''
     pfp = ndb.BlobProperty()
+    id = ndb.StringProperty()
     name = ndb.StringProperty()
     gender = ndb.StringProperty()
     school = ndb.StringProperty()
@@ -54,9 +55,20 @@ class MainPage(webapp2.RequestHandler):
 
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
+
+
+class ProfileEditPage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        if user != None:
+            template = JINJA_ENVIRONMENT.get_template('templates/profile_edit.html')
+            self.response.write(template.render())
+        else:
+            self.redirect('/')
     def post(self):
         new_user = User(parent=root_parent())
-
+        user = users.get_current_user()
+        new_user.id = user.user_id()
         new_user.name = self.request.get('user_name')
         new_user.gender = self.request.get('user_gender')
         new_user.school = self.request.get('user_school')
@@ -70,13 +82,6 @@ class MainPage(webapp2.RequestHandler):
         new_user.hobbies = self.request.get('user_hobbies')
         new_user.study_in_room = bool(self.request.get('user_study_in_room', default_value=''))
         new_user.put()
-
-class ProfileEditPage(webapp2.RequestHandler):
-    def get(self):
-        user = users.get_current_user()
-        template = JINJA_ENVIRONMENT.get_template('templates/profile_edit.html')
-        self.response.headers['Content-Type'] = 'text/html'
-        self.response.write(template.render())
 
 class ProfileViewPage(webapp2.RequestHandler):
     def get(self):

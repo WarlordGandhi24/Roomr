@@ -8,24 +8,53 @@
   <body>
     <h1 id="main">Roomr</h1>
     <hr>
-    <image src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" id="pfp">
-    <p id = "bio1">Name:</p>
-    <p id = "bio2">School:</p>
-    <p id = "bio3">Major:</p>
-    <p id = "bio4">Gender:</p>
-    <p id = "bio6">Public?</p>
-    <p id = "bio7">School:</p>
-    <p id = "bio8">Major:</p>
-    <p id = "bio9">Noise Level:</p>
-    <p id = "bio10">Cleanliness:</p>
-    <p id = "bio11"> Do You Study in Your Room?:</p>
-    <p id = "bio13">When Do You Go To Sleep?:</p>
-    <p id = "bio14">When Do You Wake Up?:</p>
-    <p id = "bio5">What Kind of Music Do You Like?</p>
-        <p id = "bio5">Public?</p>
-    <input type="checkbox" name="public" value="" id="public">
-    <p id = "bio12">About Me:</p>
-    <textarea id="aboutme" rows="7" cols="50"></textarea>
-    <button id="submit" class="btn btn-danger">Submit</button>
+      <image src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" id="pfp">
+      <p class= "first" id = "bio1">Name:</p>
+      <p class= "first" id = "bio2">School:</p>
+      <p class = "first" id = "bio3">Major:</p>
+      <p class="first"id = "bio4">Gender:</p>
+      <p class="first"id = "bio5">Public?</p>
+      <input type="checkbox" name="public" value="" id="public">
+      <p id = "about">About Me:</p>
+      <textarea id="aboutme" rows="7" cols="50"></textarea>
+      <button id="submit" class="btn btn-danger">Submit</button>
+      <textarea id="sub1" rows = "1" cols="20"></textarea>
+      <textarea id="sub2" rows = "1" cols="20"></textarea>
+      <textarea id="sub3" rows = "1" cols="20"></textarea>
+      <textarea id="sub4" rows = "1" cols="20"></textarea>
+    <h1>Room Preferences</h1>
+    <hr>
+    <p id = "pref">Noise Level:</p>
+    <input list="hosting-plan" type="text">
+    <datalist id="hosting-plan">
+        <option value="Quiet"/>
+        <option value="Loud"/>
+    </datalist>
+    <br><br>
+    <p id = "pref">Cleanliness:</p>
+    <input list="hosting-plan" type="text">
+    <datalist id="hosting-plan">
+        <option value="Organized"/>
+        <option value="Disorganized"/>
+    </datalist>
+    <br><br>
+    <p id = "pref">When Do You Go To Sleep?:</p>
+    <input list="hosting-plan" type="text">
+    <datalist id="hosting-plan">
+        <option value="Early"/>
+        <option value="Late"/>
+    </datalist>
+    <br><br>
+    <p id = "pref">When Do You Wake Up?:</p>
+    <input list="hosting-plan" type="text">
+    <datalist id="hosting-plan">
+        <option value="Early"/>
+        <option value="Late"/>
+    </datalist>
+    <br><br>
+    <p id = "pref"> Do You Study in Your Room?:</p>
+    <input type="checkbox" name="public" value="">
+    <br><br>
+    <p id = "bio14">What Kind of Music Do You Like?</p><br>
   </body>
 </html>
