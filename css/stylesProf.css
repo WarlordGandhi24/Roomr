@@ -28,3 +28,23 @@
   left: 375;
   bottom: 300;
 }
+#bio5 {
+  position: relative;
+  left: 900;
+  bottom: 480;
+}
+#bio6 {
+  position: relative;
+  left: 900;
+  bottom: 480;
+}
+#public {
+  position: relative;
+  left:880;
+  bottom: 510;
+}
+#aboutme {
+  position: relative;
+  left: 900;
+  bottom: 480;
+}
