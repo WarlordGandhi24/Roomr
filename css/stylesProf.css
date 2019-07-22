@@ -64,3 +64,42 @@ textarea{
   left: -725;
   bottom: 165;
 }
+#sub2 {
+  position: relative;
+  left: 425;
+  bottom: 330;
+}
+#sub3 {
+  position: relative;
+  left: 252;
+  bottom: 290;
+}
+#sub4 {
+  position: relative;
+  left: 95;
+  bottom: 247;
+}
+#bio10 {
+  position: relative;
+  top: 15;
+}
+#bio11 {
+  position: relative;
+  top: 25;
+}
+#bio12 {
+  position: relative;
+  top: 35;
+}
+#bio13 {
+  position: relative;
+  top: 45;
+}
+#bio14 {
+  position: relative;
+  top: 55;
+}
+#bio15 {
+  position: relative;
+  top: 65;
+}
