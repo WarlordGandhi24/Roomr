@@ -24,3 +24,6 @@
 body {
   background-color: #fce803;
 }
+a:visited {
+  color: inherit;
+}
