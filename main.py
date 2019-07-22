@@ -66,9 +66,15 @@ class SearchPage(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
         self.response.write(template.render())
 
+class ChatPage(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('templates/jstalk_test.html')
+        self.response.write(template.render())
+
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/profile_edit', ProfileEditPage),
     ('/profile_view', ProfileViewPage),
-    ('/search', SearchPage)
+    ('/search', SearchPage),
+    ('/jsSandBox', ChatPage)
 ], debug=True)
