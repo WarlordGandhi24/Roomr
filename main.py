@@ -2,6 +2,8 @@ import os
 
 from google.appengine.ext import ndb
 from google.appengine.api import users
+from google.appengine.api import images
+
 
 import jinja2
 import webapp2
@@ -13,6 +15,26 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 def root_parent():
     return ndb.Key('Parent', 'default_parent')
+
+class User(ndb.Model):
+    '''A database entry representing a single user.'''
+    pfp = ndb.BlobProperty()
+    name = ndb.StringProperty()
+    gender = ndb.StringProperty()
+    school = ndb.StringProperty()
+    major = ndb.StringProperty()
+    about_me = ndb.StringProperty()
+    noise_level = ndb.StringProperty()
+    cleanliness = ndb.StringProperty()
+    study_in_room = ndb.BooleanProperty()
+    sleep_time = ndb.StringProperty()
+    wake_time = ndb.StringProperty()
+    music_genre = ndb.StringProperty()
+    hobbies = ndb.StringProperty()
+
+
+
+
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
