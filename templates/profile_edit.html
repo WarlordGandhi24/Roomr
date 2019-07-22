@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/stylesProf.css">
   </head>
   <body>
+    <form method  = "post" action = "/profile_edit">
     <h1 id="main">Roomr</h1>
     <hr>
       <image src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" id="pfp">
@@ -18,10 +19,10 @@
       <p id = "about">About Me:</p>
       <textarea id="aboutme" rows="7" cols="50"></textarea>
       <button id="submit" class="btn btn-danger">Submit</button>
-      <textarea id="sub1" rows = "1" cols="20"></textarea>
-      <textarea id="sub2" rows = "1" cols="20"></textarea>
-      <textarea id="sub3" rows = "1" cols="20"></textarea>
-      <textarea id="sub4" rows = "1" cols="20"></textarea>
+      <textarea name = "user_name"id="sub1" rows = "1" cols="20"></textarea>
+      <textarea name = "user_school" id="sub2" rows = "1" cols="20"></textarea>
+      <textarea name = "user_major" id="sub3" rows = "1" cols="20"></textarea>
+      <textarea name = "user_gender" id="sub4" rows = "1" cols="20"></textarea>
     <h1>Room Preferences</h1>
     <hr>
     <p id = "pref">Noise Level:</p>
@@ -32,22 +33,22 @@
     </datalist>
     <br><br>
     <p id = "pref">Cleanliness:</p>
-    <input list="hosting-plan" type="text">
-    <datalist id="hosting-plan">
+    <input list="hosting-plan4" type="text">
+    <datalist id="hosting-plan4">
         <option value="Organized"/>
         <option value="Disorganized"/>
     </datalist>
     <br><br>
     <p id = "pref">When Do You Go To Sleep?:</p>
-    <input list="hosting-plan" type="text">
-    <datalist id="hosting-plan">
+    <input list="hosting-plan2" type="text">
+    <datalist id="hosting-plan2">
         <option value="Early"/>
         <option value="Late"/>
     </datalist>
     <br><br>
     <p id = "pref">When Do You Wake Up?:</p>
-    <input list="hosting-plan" type="text">
-    <datalist id="hosting-plan">
+    <input list="hosting-plan3" type="text">
+    <datalist id="hosting-plan3">
         <option value="Early"/>
         <option value="Late"/>
     </datalist>
@@ -55,6 +56,16 @@
     <p id = "pref"> Do You Study in Your Room?:</p>
     <input type="checkbox" name="public" value="">
     <br><br>
-    <p id = "bio14">What Kind of Music Do You Like?</p><br>
+    <br>
+    <h1>Hobbies/Interests</h1>
+    <hr>
+    <p id = "pref">What Kind of Music Do You Like?</p><br>
+    <textarea id = "pref" rows = "3" cols="60"></textarea><br><br>
+    <p id = "pref">What Kind of Movies Do You Like?</p><br>
+    <textarea id = "pref" rows = "3" cols="60"></textarea><br><br>
+    <p id = "pref">What Kind of Games (Sports and Video Games) Do You Like?</p><br>
+    <textarea id = "pref" rows = "3" cols="60"></textarea><br><br>
+    <p id = "pref">Misc. Interests</p><br>
+    <textarea id = "pref" rows = "3" cols="60"></textarea>
   </body>
 </html>
