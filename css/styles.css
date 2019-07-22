@@ -15,3 +15,11 @@
   top: 190;
   text-align: center;
 }
+#team {
+  position: relative;
+  top: 415;
+  text-align: center;
+}
+body {
+  background-color: #fce803;
+}
