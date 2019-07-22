@@ -8,3 +8,43 @@
   width: 25%;
   height: 15% auto;
 }
+#bio1 {
+  position: relative;
+  left: 375;
+  bottom: 360;
+}
+#bio2 {
+  position: relative;
+  left: 375;
+  bottom: 340;
+}
+#bio3 {
+  position: relative;
+  left: 375;
+  bottom: 320;
+}
+#bio4 {
+  position: relative;
+  left: 375;
+  bottom: 300;
+}
+#bio5 {
+  position: relative;
+  left: 900;
+  bottom: 480;
+}
+#bio6 {
+  position: relative;
+  left: 900;
+  bottom: 480;
+}
+#public {
+  position: relative;
+  left:880;
+  bottom: 510;
+}
+#aboutme {
+  position: relative;
+  left: 900;
+  bottom: 480;
+}
