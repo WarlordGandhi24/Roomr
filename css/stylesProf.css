@@ -8,3 +8,23 @@
   width: 25%;
   height: 15% auto;
 }
+#bio1 {
+  position: relative;
+  left: 375;
+  bottom: 360;
+}
+#bio2 {
+  position: relative;
+  left: 375;
+  bottom: 340;
+}
+#bio3 {
+  position: relative;
+  left: 375;
+  bottom: 320;
+}
+#bio4 {
+  position: relative;
+  left: 375;
+  bottom: 300;
+}
