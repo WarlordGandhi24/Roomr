@@ -32,6 +32,8 @@ class User(ndb.Model):
     sleep_time = ndb.StringProperty()
     wake_time = ndb.StringProperty()
     music_genre = ndb.StringProperty()
+    movies = ndb.StringProperty()
+    misc = ndb.StringProperty()
     hobbies = ndb.StringProperty()
     firsttime = ndb.StringProperty()
 
@@ -67,8 +69,14 @@ class ProfileEditPage(webapp2.RequestHandler):
         else:
             self.redirect('/')
     def post(self):
-        new_user = User(parent=root_parent())
+
         user = users.get_current_user()
+
+        new_user = User.query(User.id == user.user_id()).fetch()
+        if(len(new_user) > 0):
+            new_user = new_user[0]
+        else:
+            new_user = User(parent=root_parent())
         new_user.id = user.user_id()
         new_user.name = self.request.get('user_name')
         new_user.gender = self.request.get('user_gender')
@@ -81,6 +89,9 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.wake_time = self.request.get('user_wake_time')
         new_user.music_genre = self.request.get('user_music_genre')
         new_user.hobbies = self.request.get('user_hobbies')
+        new_user.public = self.request.get("user_public")
+        new_user.movies = self.request.get("user_movies")
+        new_user.misc = self.request.get("user_misc")
         new_user.study_in_room = bool(self.request.get('user_study_in_room', default_value=''))
         new_user.put()
         self.redirect('/profile_edit')
