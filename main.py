@@ -45,7 +45,7 @@ class MainPage(webapp2.RequestHandler):
           'login_url': users.create_login_url(self.request.uri),
           'logout_url': users.create_logout_url(self.request.uri),
         }
-        
+
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
     def post(self):
@@ -69,6 +69,7 @@ class ProfileEditPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/profile_edit.html')
+        self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render())
 
 class ProfileViewPage(webapp2.RequestHandler):

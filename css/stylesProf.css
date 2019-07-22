@@ -48,3 +48,11 @@
   left: 900;
   bottom: 480;
 }
+textarea{
+  resize: none;
+}
+#submit {
+  position: relative;
+  left: 500;
+  bottom: 480;
+}
