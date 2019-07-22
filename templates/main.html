@@ -6,9 +6,14 @@
     <link rel="stylesheet" href="/css/styles.css">
   </head>
   <body>
-    <button id="login" class="btn btn-primary">Log In</button>
+    {% if user %}
+    <h1>User is {{user.email()}}</h1>
+    <a href="{{logout_url}}">Logout</a>
+    {% else %}
+    <button id="login" class="btn btn-primary"><a href="{{login_url}}">Log In</a></button>
     <h1 id="main">Roomr</h1>
     <p id="blurb">Once you’ve decided where you will spend the next four years of your life, the next step might be who you’re going to live with which is a big decision. If you’re choosing someone to spend at least a year of your life you want to make sure that you will at least be able to coexist. For many, including me, it was very hard to try to find someone to dorm with. With our webapp roomr, this will no longer be an issue. Roomr allows a user to filter through potential roommates at a specific university and message them to see if you are compatible.</p>
     <p id="team">Teenage Mutant Jinja Turtles</p>
+    {% endif %}
   </body>
 </html>
