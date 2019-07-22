@@ -24,33 +24,37 @@
       <textarea id="sub4" rows = "1" cols="20"></textarea>
     <h1>Room Preferences</h1>
     <hr>
-    <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Noise Level
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <button class="dropdown-item" type="button">Quiet</button>
-      <button class="dropdown-item" type="button">Loud</button>
-    </div>
+    <p id = "pref">Noise Level:</p>
+    <input list="hosting-plan" type="text">
+    <datalist id="hosting-plan">
+        <option value="Quiet"/>
+        <option value="Loud"/>
+    </datalist>
     <br><br>
-    </div>
-    <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Cleanliness
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <button class="dropdown-item" type="button">Quiet</button>
-      <button class="dropdown-item" type="button">Loud</button>
-    </div>
-    </div>
-    <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Noise Level
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <button class="dropdown-item" type="button">Quiet</button>
-      <button class="dropdown-item" type="button">Loud</button>
-    </div>
-    </div>
+    <p id = "pref">Cleanliness:</p>
+    <input list="hosting-plan" type="text">
+    <datalist id="hosting-plan">
+        <option value="Organized"/>
+        <option value="Disorganized"/>
+    </datalist>
+    <br><br>
+    <p id = "pref">When Do You Go To Sleep?:</p>
+    <input list="hosting-plan" type="text">
+    <datalist id="hosting-plan">
+        <option value="Early"/>
+        <option value="Late"/>
+    </datalist>
+    <br><br>
+    <p id = "pref">When Do You Wake Up?:</p>
+    <input list="hosting-plan" type="text">
+    <datalist id="hosting-plan">
+        <option value="Early"/>
+        <option value="Late"/>
+    </datalist>
+    <br><br>
+    <p id = "pref"> Do You Study in Your Room?:</p>
+    <input type="checkbox" name="public" value="">
+    <br><br>
+    <p id = "bio14">What Kind of Music Do You Like?</p><br>
   </body>
 </html>
