@@ -58,27 +58,31 @@ textarea{
   position: relative;
   left: -180;
   bottom: -165;
+  color: white;
 }
 #sub1 {
   position: relative;
-  left: -725;
+  left: -650;
   bottom: 165;
 }
 #sub2 {
   position: relative;
-  left: 425;
-  bottom: 330;
+  left: -810;
+  bottom: 125;
 }
 #sub3 {
   position: relative;
-  left: 252;
+  left: 425;
   bottom: 290;
 }
 #sub4 {
   position: relative;
-  left: 95;
+  left: 265;
   bottom: 247;
 }
 #pref {
   margin-left: 10px;
+}
+body {
+  background-color: #fce803;
 }

@@ -36,6 +36,7 @@ class User(ndb.Model):
     misc = ndb.StringProperty()
     hobbies = ndb.StringProperty()
     firsttime = ndb.StringProperty()
+    
 
 
 
@@ -64,8 +65,10 @@ class ProfileEditPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user != None:
+
             template = JINJA_ENVIRONMENT.get_template('templates/profile_edit.html')
             self.response.write(template.render())
+
         else:
             self.redirect('/')
     def post(self):
