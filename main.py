@@ -31,6 +31,8 @@ class User(ndb.Model):
     wake_time = ndb.StringProperty()
     music_genre = ndb.StringProperty()
     hobbies = ndb.StringProperty()
+    firsttime = ndb.StringProperty()
+
 
 
 
@@ -40,9 +42,13 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/main.html')
+        #User.firsttime = True
+        login = users.create_login_url('/profile_edit')
+        #if(User.firsttime == True): login = users.create_login_url('/search')
+
         data = {
           'user': user,
-          'login_url': users.create_login_url(self.request.uri),
+          'login_url': login,
           'logout_url': users.create_logout_url(self.request.uri),
         }
 
