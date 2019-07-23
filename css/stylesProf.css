@@ -30,6 +30,9 @@ textarea {
 #batton {
   margin-left: auto;
 }
+body {
+  background-color: #fce803;
+}
 /*
 #bio1 {
   position: relative;
@@ -99,7 +102,4 @@ textarea{
   position: relative;
   left: 265;
   bottom: 247;
-}
-body {
-  background-color: #fce803;
 }
