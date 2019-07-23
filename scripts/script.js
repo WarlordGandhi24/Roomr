@@ -6,6 +6,8 @@ let negative = ["No", "False, cretin.", "Nice try buddy, but no dice", "Imagine 
 let responseType = [positive, neutral, negative]
 let colors = ["green", "goldenrod", "red"]
 
+let pfp = document.querySelector("pfp")
+
 ball.addEventListener('click', ()=>{
   let paragraph = document.querySelector("#answer")
   listNum = Math.floor(Math.random() * 3)
