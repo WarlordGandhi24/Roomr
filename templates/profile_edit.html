@@ -7,67 +7,83 @@
   </head>
   <body>
     <form method  = "post" action = "/profile_edit">
-    <h1 id="main">Roomr.</h1>
-    <hr>
+    <div class="grid-container">
+    <div class="item1">
+      <h1 id="main">Roomr</h1>
+      <hr>
+    </div>
+    <div class="item2">
       <image src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" id="pfp">
+      <button id = "pref" class="btn btn-info">Submit Image</button>
+    </div>
+    <div class="item3">
       <p class= "first" id = "bio1">Name:</p>
+      <textarea name = "user_name"id="sub1" rows = "1" cols="20"></textarea>
       <p class= "first" id = "bio2">School:</p>
+      <textarea name = "user_school" id="sub2" rows = "1" cols="20"></textarea>
       <p class = "first" id = "bio3">Major:</p>
+      <textarea name = "user_major" id="sub3" rows = "1" cols="20"></textarea>
       <p class="first"id = "bio4">Gender:</p>
+      <textarea name = "user_gender" id="sub4" rows = "1" cols="20"></textarea>
+    </div>
+    <div class="item4">
       <p class="first"id = "bio5">Public?</p>
       <input type="checkbox" name="public" value="" id="public">
       <p id = "about">About Me:</p>
       <textarea name = "user_about_me"id="aboutme" rows="7" cols="50"></textarea>
-      <textarea name = "user_name"id="sub1" rows = "1" cols="20"></textarea>
-      <textarea name = "user_school" id="sub2" rows = "1" cols="20"></textarea>
-      <textarea name = "user_major" id="sub3" rows = "1" cols="20"></textarea>
-      <textarea name = "user_gender" id="sub4" rows = "1" cols="20"></textarea>
+    </div>
     <br>
-    <button id = "pref" class="btn btn-info">Submit Image</button>
-    <h1>Room Preferences</h1>
-    <hr>
-    <p id = "pref">Noise Level:</p>
-    <input name = "user_noise_level" value="{{user.noise_level}}" list="hosting-plan" type="text">
-    <datalist id="hosting-plan">
-        <option value="Quiet"/>
-        <option value="Loud"/>
-    </datalist>
-    <br><br>
-    <p id = "pref">Cleanliness:</p>
-    <input name = "user_cleanliness" list="hosting-plan4" value="{{user.cleanliness}}" type="text">
-    <datalist id="hosting-plan4">
-        <option value="Organized"/>
-        <option value="Disorganized"/>
-    </datalist>
-    <br><br>
-    <p id = "pref">When Do You Go To Sleep?:</p>
-    <input name = "user_sleep_time" list="hosting-plan2" type="text">
-    <datalist id="hosting-plan2">
-        <option value="Early"/>
-        <option value="Late"/>
-    </datalist>
-    <br><br>
-    <p id = "pref">When Do You Wake Up?:</p>
-    <input name = "user_wake_time" list="hosting-plan3" type="text">
-    <datalist id="hosting-plan3">
-        <option value="Early"/>
-        <option value="Late"/>
-    </datalist>
-    <br><br>
-    <p id = "pref"> Do You Study in Your Room?:</p>
-    <input name = "user_public"type="checkbox" name="public" value="">
-    <br><br>
-    <br>
-    <h1>Hobbies/Interests</h1>
-    <hr>
-    <p id = "pref">What Kind of Music Do You Like?</p><br>
-    <textarea name = "user_music_genre" id = "pref" rows = "3" cols="60"></textarea><br><br>
-    <p id = "pref">What Kind of Movies Do You Like?</p><br>
-    <textarea name = "user_movies" id = "pref" rows = "3" cols="60"></textarea><br><br>
-    <p id = "pref">What Kind of Games (Sports and Video Games) Do You Like?</p><br>
-    <textarea name = "user_games"id = "pref" rows = "3" cols="60"></textarea><br><br>
-    <p id = "pref">Misc. Interests</p><br>
-    <textarea name = "user_misc" id = "pref" rows = "3" cols="60"></textarea><br><br>
-    <a href="/search" button id = "pref" class="btn btn-danger" role="button">Submit Profile</a>
+    <div class="item5">
+      <h1>Room Preferences</h1>
+      <hr>
+      <p id = "pref"><b>Noise Level:</b></p>
+      <input name = "user_noise_level" list="hosting-plan" type="text">
+      <datalist id="hosting-plan">
+          <option value="Quiet"/>
+          <option value="Loud"/>
+      </datalist>
+      <br><br>
+      <p id = "pref"><b>Cleanliness:</b></p>
+      <input name = "user_cleanliness" list="hosting-plan4" type="text">
+      <datalist id="hosting-plan4">
+          <option value="Organized"/>
+          <option value="Disorganized"/>
+      </datalist>
+      <br><br>
+      <p id = "pref"><b>When Do You Go To Sleep?:</b></p>
+      <input name = "user_sleep_time" list="hosting-plan2" type="text">
+      <datalist id="hosting-plan2">
+          <option value="Early"/>
+          <option value="Late"/>
+      </datalist>
+      <br><br>
+      <p id = "pref"><b>When Do You Wake Up?:</b></p>
+      <input name = "user_wake_time" list="hosting-plan3" type="text">
+      <datalist id="hosting-plan3">
+          <option value="Early"/>
+          <option value="Late"/>
+      </datalist>
+      <br><br>
+      <div>
+        <label id = "pref" for="a">Do You Study in Your Room?:</label>
+        <input name = "user_public"type="checkbox" id="a" value="">
+      </div>
+      <br><br>
+      <br>
+    </div>
+    <div class="item6">
+      <h1>Hobbies/Interests</h1>
+      <hr>
+      <p id = "pref">What Kind of Music Do You Like?</p><br>
+      <textarea name = "user_music_genre" id = "pref" rows = "3" cols="60"></textarea><br><br>
+      <p id = "pref">What Kind of Movies Do You Like?</p><br>
+      <textarea name = "user_movies" id = "pref" rows = "3" cols="60"></textarea><br><br>
+      <p id = "pref">What Kind of Games (Sports and Video Games) Do You Like?</p><br>
+      <textarea name = "user_games"id = "pref" rows = "3" cols="60"></textarea><br><br>
+      <p id = "pref">Misc. Interests</p><br>
+      <textarea name = "user_misc" id = "pref" rows = "3" cols="60"></textarea><br><br>
+      <button id = "pref" class="btn btn-danger">Submit Profile</button>
+    </div>
+    </div>
   </body>
 </html>
