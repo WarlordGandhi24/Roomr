@@ -18,3 +18,15 @@
 #edit {
   text-align: right;
 }
+#main {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:  100px;
+
+}
+body {
+  background-image: url('https://media1.giphy.com/media/zkA5kRmmOfoUE/giphy.gif');
+  background-size: cover;
+  color: white;
+}
