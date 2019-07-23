@@ -70,22 +70,60 @@
         <label id = "colorThing" for="a">Do You Study in Your Room?:</label>
         <input name = "user_public"type="checkbox" id="a" value="">
       </div>
-      <br><br>
       <br>
-    </div>
-    <div class="item6">
-      <h1>Hobbies/Interests</h1>
-      <hr>
-      <p id = "pref"><b>What Kind of Music Do You Like?</b></p><br>
-      <textarea name = "user_music_genre" id = "pref" rows = "3" cols="60"></textarea><br><br>
-      <p id = "pref"><b>What Kind of Movies Do You Like?</b></p><br>
-      <textarea name = "user_movies" id = "pref" rows = "3" cols="60"></textarea><br><br>
-      <p id = "pref"><b>What Kind of Games (Sports and Video Games) Do You Like?</b></p><br>
-      <textarea name = "user_games"id = "pref" rows = "3" cols="60"></textarea><br><br>
-      <p id = "pref"><b>Misc. Interests</b></p><br>
-      <textarea name = "user_misc" id = "pref" rows = "3" cols="60"></textarea><br><br>
-      <a href='/search' id = "pref" class="btn btn-danger" type="button">Submit Profile</a>
-    </div>
-    </div>
+      <div class="item5">
+        <h1 id = "pref" >Room Preferences</h1>
+        <hr>
+        <p id = "pref"><b>Noise Level:</b></p>
+        <select id = "pref">
+          <option value="quiet">Quiet</option>
+          <option value="loud">Loud</option>
+          <option value="ind">Indifferent</option>
+        </select>
+        <br><br>
+        <p id = "pref"><b>Cleanliness:</b></p>
+        <select id = "pref">
+          <option value="org">Organized</option>
+          <option value="disorg">Disorganized</option>
+          <option value="ind">Indifferent</option>
+        </select>
+        <br><br>
+        <p id = "pref"><b>When Do You Go To Sleep?:</b></p>
+        <select id = "pref">
+          <option value="early">Early</option>
+          <option value="late">Late</option>
+          <option value="ind">Indifferent</option>
+        </select>
+        <br><br>
+        <p id = "pref"><b>When Do You Wake Up?:</b></p>
+        <select id = "pref">
+          <option value="early">Early</option>
+          <option value="late">Late</option>
+          <option value="ind">Indifferent</option>
+        </select>
+        <br><br>
+        <div>
+          <label id = "colorThing" for="a">Do You Study in Your Room?:</label>
+          <input name = "user_public"type="checkbox" id="a" value="">
+        </div>
+        <br><br>
+        <br>
+      </div>
+      <div class="item6">
+        <h1>Hobbies/Interests</h1>
+        <hr>
+        <p id = "pref"><b>What Kind of Music Do You Like?</b></p><br>
+        <textarea name = "user_music_genre" id = "pref" rows = "3" cols="60"></textarea><br><br>
+        <p id = "pref"><b>What Kind of Movies Do You Like?</b></p><br>
+        <textarea name = "user_movies" id = "pref" rows = "3" cols="60"></textarea><br><br>
+        <p id = "pref"><b>What Kind of Games (Sports and Video Games) Do You Like?</b></p><br>
+        <textarea name = "user_games"id = "pref" rows = "3" cols="60"></textarea><br><br>
+        <p id = "pref"><b>Misc. Interests</b></p><br>
+        <textarea name = "user_misc" id = "pref" rows = "3" cols="60"></textarea><br><br>
+        <input type="submit" name="" value="Submit">
+        <a href='/search' id = "pref" class="btn btn-danger" type="button">Submit Profile</a>
+      </div>
+      </div>
+    </form>
   </body>
 </html>
