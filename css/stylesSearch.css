@@ -1,13 +1,20 @@
 .item1 {  grid-area: header; }
 .item2 { grid-area: menu; }
-.item3 { grid-area: main; }
-.item4 { grid-area: right; }
-.item5 { grid-area: footer; }
-.item6 { grid-area: whatever; }
+.item3 { grid-area: right; }
+.item4 { grid-area: search; }
 .grid-container {
   display: grid;
   grid-template-areas:
     'header header header header'
-    'menu main main right'
-    'footer footer whatever whatever';
+    'menu menu menu right'
+    'search search search search';
+}
+#head {
+  text-align: center;
+}
+.nowrap {
+  white-space: nowrap ;
+}
+#edit {
+  text-align: right;
 }
