@@ -41,9 +41,14 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/main.html')
-        #User.firsttime = True
+        User.firsttime = True
         login = users.create_login_url('/profile_edit')
-        #if(User.firsttime == True): login = users.create_login_url('/search')
+        if(User.firsttime == True):
+            login = users.create_login_url('/profile_edit')
+            User.firsttime = False
+        elif(User.firsttime == False):
+            login = users.create_login_url('/search')
+
 
         data = {
           'user': user,
