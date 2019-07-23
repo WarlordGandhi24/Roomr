@@ -70,13 +70,13 @@
           <h1>Hobbies/Interests</h1>
           <hr>
           <p id = "pref"><b>What Kind of Music Do You Like?</b></p><br>
-          <textarea name = "user_music_genre" id = "pref" rows = "3" cols="60"></textarea><br><br>
+          <textarea name = "user_music_genre" id = "pref" rows = "3" cols="60">{{user.music_genre}}</textarea><br><br>
           <p id = "pref"><b>What Kind of Movies Do You Like?</b></p><br>
-          <textarea name = "user_movies" id = "pref" rows = "3" cols="60"></textarea><br><br>
+          <textarea name = "user_movies" id = "pref" rows = "3" cols="60">{{user.movies}}</textarea><br><br>
           <p id = "pref"><b>What Kind of Games (Sports and Video Games) Do You Like?</b></p><br>
-          <textarea name = "user_games"id = "pref" rows = "3" cols="60"></textarea><br><br>
+          <textarea name = "user_games"id = "pref" rows = "3" cols="60">{{user.games}}</textarea><br><br>
           <p id = "pref"><b>Misc. Interests</b></p><br>
-          <textarea name = "user_misc" id = "pref" rows = "3" cols="60"></textarea><br><br>
+          <textarea name = "user_misc" id = "pref" rows = "3" cols="60">{{user.misc}}</textarea><br><br>
           <input type="submit" value="Submit">
           <a href='/search' id = "pref" class="btn btn-danger" type="button">Submit Profile</a>
         </div>

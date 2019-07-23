@@ -34,7 +34,7 @@ class User(ndb.Model):
     music_genre = ndb.StringProperty()
     movies = ndb.StringProperty()
     misc = ndb.StringProperty()
-    user_games = ndb.StringProperty()
+    games = ndb.StringProperty()
     firsttime = ndb.StringProperty()
 
 class MainPage(webapp2.RequestHandler):
