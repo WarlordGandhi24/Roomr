@@ -20,8 +20,8 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
-  height: 50%;
+  width:  100px;
+
 }
 textarea {
   resize: none;
@@ -33,7 +33,7 @@ textarea {
   margin-left: auto;
 }
 body {
-  background-color: #fce803;
+  background-color: #262626;
 }
 /*
 #bio1 {
