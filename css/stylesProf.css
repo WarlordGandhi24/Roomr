@@ -15,9 +15,13 @@
 .grid-container > div {
   padding: 20px 0;
 }
+
 #main {
-  font-size: 24px;
-  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 50%;
 }
 textarea {
   resize: none;
