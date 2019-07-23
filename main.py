@@ -34,6 +34,7 @@ class User(ndb.Model):
     music_genre = ndb.StringProperty()
     movies = ndb.StringProperty()
     misc = ndb.StringProperty()
+    user_games = ndb.StringProperty()
     hobbies = ndb.StringProperty()
     firsttime = ndb.StringProperty()
 
@@ -72,7 +73,7 @@ class ProfileEditPage(webapp2.RequestHandler):
                 current_user = current_user[0]
             else:
                 current_user = User(parent=root_parent())
-            print(current_user.cleanliness)
+            print(current_user.about_me)
             self.response.write(template.render({'user' : current_user}))
         else:
             self.redirect('/')
@@ -80,7 +81,7 @@ class ProfileEditPage(webapp2.RequestHandler):
 
         user = users.get_current_user()
 
-        new_user = User.query(User.id == user.user_id()).fetch()
+        new_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
         if(len(new_user) > 0):
             new_user = new_user[0]
         else:
@@ -99,6 +100,7 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.hobbies = self.request.get('user_hobbies')
         new_user.public = self.request.get("user_public")
         new_user.movies = self.request.get("user_movies")
+        new_user.user_games = self.request.get("user_games")
         new_user.misc = self.request.get("user_misc")
         new_user.study_in_room = bool(self.request.get('user_study_in_room', default_value=''))
         new_user.put()
