@@ -97,7 +97,7 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.music_genre = self.request.get('user_music_genre')
         new_user.public = self.request.get("user_public")
         new_user.movies = self.request.get("user_movies")
-        new_user.user_games = self.request.get("user_games")
+        new_user.games = self.request.get("user_games")
         new_user.misc = self.request.get("user_misc")
         new_user.study_in_room = bool(self.request.get('user_study_in_room', default_value=''))
         new_user.put()
@@ -107,7 +107,15 @@ class ProfileViewPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/profile_view.html')
-        self.response.write(template.render())
+        profId = self.request.get('prof')
+        data = []
+        for items in User.query(ancestor=root_parent()).fetch():
+            if (profId == items.id):
+                data = items
+        actualData = {
+            'user': data
+        }
+        self.response.write(template.render(actualData))
 
 class SearchPage(webapp2.RequestHandler):
     def get(self):
