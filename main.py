@@ -77,6 +77,7 @@ class ProfileEditPage(webapp2.RequestHandler):
             self.redirect('/')
     def post(self):
         print("hi")
+        print(self.request.get('user_sleep_time'))
         user = users.get_current_user()
 
         new_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
