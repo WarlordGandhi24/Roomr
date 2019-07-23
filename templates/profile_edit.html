@@ -3,36 +3,71 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/css/stylesProf.css">
   </head>
   <body>
     <script type="text/javascript" src="/scripts/script.js"></script>
     <form method  = "post" action = "/profile_edit">
-      <div class="grid-container">
-      <div class="item1">
-        <a href="/"><image id="main" src="https://i.imgur.com/BKPQnUQ.png"></a>
-        <hr>
+    <div class="grid-container">
+    <div class="item1">
+      <a href="/"><image id="main" src="https://i.imgur.com/BKPQnUQ.png"></a>
+      <hr>
+    </div>
+    <div class="item2">
+      <div id="profile-container">
+        <image id="profileImage" src="http://lorempixel.com/100/100" />
       </div>
-      <div class="item2">
-        <image src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" id="pfp">
-        <br><br>
-        <button id = "pref" class="btn btn-info">Submit Image</button>
-      </div>
-      <div class="item3">
-        <p class= "first" id = "bio1"><b>Name:</b></p>
-        <textarea name = "user_name"id="sub1" rows = "1" cols="20"></textarea>
-        <p class= "first" id = "bio2"><b>School:</b></p>
-        <textarea name = "user_school" id="sub2" rows = "1" cols="20"></textarea>
-        <p class = "first" id = "bio3"><b>Major:</b></p>
-        <textarea name = "user_major" id="sub3" rows = "1" cols="20"></textarea>
-        <p class="first"id = "bio4"><b>Gender:</b></p>
-        <textarea name = "user_gender" id="sub4" rows = "1" cols="20"></textarea>
-      </div>
-      <div class="item4">
-        <p class="first"id = "bio5"><b>Public?</b></p>
-        <input type="checkbox" name="public" value="" id="public">
-        <p id = "about"><b>About Me:</b></p>
-        <textarea name = "user_about_me"id="aboutme" rows="7" cols="50"></textarea>
+      <input id="imageUpload" type="file"
+       name="profile_photo" placeholder="Photo" required="" capture>
+    </div>
+    <div class="item3">
+      <p class= "first" id = "bio1"><b>Name:</b></p>
+      <textarea name = "user_name"id="sub1" rows = "1" cols="20"></textarea>
+      <p class= "first" id = "bio2"><b>School:</b></p>
+      <textarea name = "user_school" id="sub2" rows = "1" cols="20"></textarea>
+      <p class = "first" id = "bio3"><b>Major:</b></p>
+      <textarea name = "user_major" id="sub3" rows = "1" cols="20"></textarea>
+      <p class="first"id = "bio4"><b>Gender:</b></p>
+      <textarea name = "user_gender" id="sub4" rows = "1" cols="20"></textarea>
+    </div>
+    <div class="item4">
+      <p class="first"id = "bio5"><b>Public?</b></p>
+      <input type="checkbox" name="public" value="" id="public">
+      <p id = "about"><b>About Me:</b></p>
+      <textarea name = "user_about_me"id="aboutme" rows="7" cols="50"></textarea>
+    </div>
+    <br>
+    <div class="item5">
+      <h1 id = "pref" >Room Preferences</h1>
+      <hr>
+      <p id = "pref"><b>Noise Level:</b></p>
+      <select id = "pref">
+        <option value="quiet">Quiet</option>
+        <option value="loud">Loud</option>
+      </select>
+      <br><br>
+      <p id = "pref"><b>Cleanliness:</b></p>
+      <select id = "pref">
+        <option value="org">Organized</option>
+        <option value="disorg">Disorganized</option>
+      </select>
+      <br><br>
+      <p id = "pref"><b>When Do You Go To Sleep?:</b></p>
+      <select id = "pref">
+        <option value="early">Early</option>
+        <option value="late">late</option>
+      </select>
+      <br><br>
+      <p id = "pref"><b>When Do You Wake Up?:</b></p>
+      <select id = "pref">
+        <option value="early">Early</option>
+        <option value="late">late</option>
+      </select>
+      <br><br>
+      <div>
+        <label id = "colorThing" for="a">Do You Study in Your Room?:</label>
+        <input name = "user_public"type="checkbox" id="a" value="">
       </div>
       <br>
       <div class="item5">
