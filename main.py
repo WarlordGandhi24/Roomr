@@ -4,7 +4,7 @@ from google.appengine.ext import ndb
 from google.appengine.api import users
 from google.appengine.api import images
 
-
+import json
 import jinja2
 import webapp2
 
@@ -16,6 +16,18 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 def root_parent():
     return ndb.Key('Parent', 'default_parent')
 
+def GetUserChat(user):
+    '''Queries datastore to get the current value of the chat associated with this user id.'''
+    chats = Chats.query(Chats.id == user.user_id(), ancestor=root_parent()).fetch()
+    if len(chats) > 0:
+        # We found a note, return it.
+        return chats[0]
+    else:
+        # We didn't find a note, return None
+        return None
+class Chats(ndb.Model):
+    id = ndb.StringProperty()
+    logs = ndb.StringProperty()
 class User(ndb.Model):
     '''A database entry representing a single user.'''
     pfp = ndb.BlobProperty()
@@ -35,6 +47,7 @@ class User(ndb.Model):
     movies = ndb.StringProperty()
     misc = ndb.StringProperty()
     user_games = ndb.StringProperty()
+    hobbies = ndb.StringProperty()
     firsttime = ndb.StringProperty()
 
 class MainPage(webapp2.RequestHandler):
@@ -71,7 +84,7 @@ class ProfileEditPage(webapp2.RequestHandler):
         else:
             self.redirect('/')
     def post(self):
-        print("hi")
+
         user = users.get_current_user()
 
         new_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
@@ -90,13 +103,14 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.sleep_time = self.request.get('user_sleep_time')
         new_user.wake_time = self.request.get('user_wake_time')
         new_user.music_genre = self.request.get('user_music_genre')
+        new_user.hobbies = self.request.get('user_hobbies')
         new_user.public = self.request.get("user_public")
         new_user.movies = self.request.get("user_movies")
         new_user.user_games = self.request.get("user_games")
         new_user.misc = self.request.get("user_misc")
         new_user.study_in_room = bool(self.request.get('user_study_in_room', default_value=''))
         new_user.put()
-        self.redirect('/search')
+        self.redirect('/profile_edit')
 
 class ProfileViewPage(webapp2.RequestHandler):
     def get(self):
@@ -108,20 +122,65 @@ class SearchPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
-        data = {
-            'users': User.query(ancestor=root_parent()).fetch()
-        }
-        self.response.write(template.render(data))
+        self.response.write(template.render())
 
 class ChatPage(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('templates/jstalk_test.html')
-        self.response.write(template.render())
+        user = users.get_current_user()
+        template = JINJA_ENVIRONMENT.get_template('templates/chat.html')
+
+        checkForChat = Chats.query(Chats.id == user.user_id(), ancestor=root_parent()).fetch()
+        if(len(checkForChat) > 0):
+            chat = checkForChat[0]
+        else:
+            chat = Chats(parent=root_parent())
+        data = {
+        'user' : user,
+        'logs': chat.logs,
+        }
+
+        self.response.write(template.render(data))
+    def post(self):
+        user = users.get_current_user()
+        newChat = Chats.query(Chats.id == user.user_id(), ancestor=root_parent()).fetch()
+        if(len(newChat) > 0):
+            newChat = newChat[0]
+        else:
+            newChat = Chats(parent=root_parent())
+        newChat.id = user.user_id()
+        currentLogs = newChat.logs
+        newMsg = self.request.get("userMsg")
+        print(currentLogs + newMsg)
+        newChat.logs =  newMsg
+        newChat.put()
+        self.redirect("/chat")
+
+class AjaxGetNewMsg(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        if user is None:
+            # No user is logged in, so don't return any value.
+            self.response.status = 401
+            return
+        chat = GetUserChat(user)
+        logs = ''
+        if chat is not None:
+            # If there was a current note, update note.
+            logs = chat.logs
+
+        # build a dictionary that contains the data that we want to return.
+        data = {'logs': logs}
+        # Note the different content type.
+        self.response.headers['Content-Type'] = 'application/json'
+        # Turn data dict into a json string and write it to the response
+        self.response.write(json.dumps(data))
+
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/profile_edit', ProfileEditPage),
     ('/profile_view', ProfileViewPage),
     ('/search', SearchPage),
-    ('/jsSandBox', ChatPage)
+    ('/ajax/get_updated_log', AjaxGetNewMsg),
+    ('/chat', ChatPage)
 ], debug=True)
