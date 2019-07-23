@@ -66,8 +66,14 @@ class ProfileEditPage(webapp2.RequestHandler):
         user = users.get_current_user()
         if user != None:
             template = JINJA_ENVIRONMENT.get_template('templates/profile_edit.html')
-            self.response.write(template.render())
 
+            current_user = User.query(User.id == user.user_id()).fetch()
+            if(len(current_user) > 0):
+                current_user = current_user[0]
+            else:
+                current_user = User(parent=root_parent())
+            print(current_user.cleanliness)
+            self.response.write(template.render({'user' : current_user}))
         else:
             self.redirect('/')
     def post(self):
