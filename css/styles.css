@@ -21,6 +21,16 @@
   right: 10px;
   top: 10;
 }
+#search {
+  position: absolute;
+  right: 90px;
+  top: 10;
+}
+#profile_edit {
+  position: absolute;
+  right: 273px;
+  top: 10;
+}
 #blurb {
   font-size: 15px;
   margin: auto;
