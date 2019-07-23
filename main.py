@@ -136,7 +136,10 @@ class SearchPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
-        self.response.write(template.render())
+        data = {
+            'users': User.query(ancestor=root_parent()).fetch()
+        }
+        self.response.write(template.render(data))
 
 class ChatPage(webapp2.RequestHandler):
     def get(self):

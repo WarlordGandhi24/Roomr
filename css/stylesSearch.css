@@ -76,6 +76,12 @@ h4 {
 #blacktext {
   color: black;
 }
+#wrap {
+  white-space: nowrap;
+}
+.card {
+  display: inline-block;
+}
 body {
   background-color: #262626;
   background-size: cover;
