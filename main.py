@@ -35,7 +35,6 @@ class User(ndb.Model):
     movies = ndb.StringProperty()
     misc = ndb.StringProperty()
     user_games = ndb.StringProperty()
-    hobbies = ndb.StringProperty()
     firsttime = ndb.StringProperty()
 
 class MainPage(webapp2.RequestHandler):
@@ -91,7 +90,6 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.sleep_time = self.request.get('user_sleep_time')
         new_user.wake_time = self.request.get('user_wake_time')
         new_user.music_genre = self.request.get('user_music_genre')
-        new_user.hobbies = self.request.get('user_hobbies')
         new_user.public = self.request.get("user_public")
         new_user.movies = self.request.get("user_movies")
         new_user.user_games = self.request.get("user_games")
