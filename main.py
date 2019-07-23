@@ -71,7 +71,7 @@ class ProfileEditPage(webapp2.RequestHandler):
         else:
             self.redirect('/')
     def post(self):
-
+        print("hi")
         user = users.get_current_user()
 
         new_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
@@ -96,7 +96,7 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.misc = self.request.get("user_misc")
         new_user.study_in_room = bool(self.request.get('user_study_in_room', default_value=''))
         new_user.put()
-        self.redirect('/profile_edit')
+        self.redirect('/search')
 
 class ProfileViewPage(webapp2.RequestHandler):
     def get(self):
