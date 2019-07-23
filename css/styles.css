@@ -3,6 +3,14 @@
   top: 170;
   text-align: center;
 }
+#mainpage {
+  margin: auto;
+  max-width: 500px;
+  position: relative;
+  top: 180;
+  right: -460;
+  width:  1000;
+}
 #login {
   position: absolute;
   right: 5px;
@@ -12,12 +20,12 @@
   margin: auto;
   max-width: 500px;
   position: relative;
-  top: 190;
+  top: 140;
   text-align: center;
 }
 #team {
   position: relative;
-  top: 415;
+  top: 450;
   text-align: center;
 }
 body {
