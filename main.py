@@ -34,7 +34,7 @@ class User(ndb.Model):
     music_genre = ndb.StringProperty()
     hobbies = ndb.StringProperty()
     firsttime = ndb.StringProperty()
-    
+
 
 
 
