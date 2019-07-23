@@ -34,16 +34,21 @@ class User(ndb.Model):
     music_genre = ndb.StringProperty()
     movies = ndb.StringProperty()
     misc = ndb.StringProperty()
-    user_games = ndb.StringProperty()
+    games = ndb.StringProperty()
     firsttime = ndb.StringProperty()
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/main.html')
-        #User.firsttime = True
+        User.firsttime = True
         login = users.create_login_url('/profile_edit')
-        #if(User.firsttime == True): login = users.create_login_url('/search')
+        if(User.firsttime == True):
+            login = users.create_login_url('/profile_edit')
+            User.firsttime = False
+        elif(User.firsttime == False):
+            login = users.create_login_url('/search')
+
 
         data = {
           'user': user,
@@ -92,7 +97,7 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.music_genre = self.request.get('user_music_genre')
         new_user.public = self.request.get("user_public")
         new_user.movies = self.request.get("user_movies")
-        new_user.user_games = self.request.get("user_games")
+        new_user.games = self.request.get("user_games")
         new_user.misc = self.request.get("user_misc")
         new_user.study_in_room = bool(self.request.get('user_study_in_room', default_value=''))
         new_user.put()
@@ -102,7 +107,15 @@ class ProfileViewPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/profile_view.html')
-        self.response.write(template.render())
+        profId = self.request.get('prof')
+        data = []
+        for items in User.query(ancestor=root_parent()).fetch():
+            if (profId == items.id):
+                data = items
+        actualData = {
+            'user': data
+        }
+        self.response.write(template.render(actualData))
 
 class SearchPage(webapp2.RequestHandler):
     def get(self):
