@@ -21,7 +21,9 @@
   text-align: center;
 }
 body {
-  background-color: #fce803;
+  background-image: url('https://media3.giphy.com/media/KsKZpeYRw5AWI/source.gif');
+  background-size: cover;
+  color: white;
 }
 a:visited {
   color: inherit;
