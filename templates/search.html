@@ -45,7 +45,7 @@
           <option value="ind">Indifferent</option>
         </select>
         <div id = "study">
-          <label id = "colorThing" for="a">Do You Study in Your Room?:</label>
+          <label id = "specialtext" for="a">Do You Study in Your Room?:</label>
           <input name = "user_public"type="checkbox" id="a" value="">
         </div>
         <button class="btn btn-success" id="search">Search</button>
@@ -54,14 +54,16 @@
         <h4 id="prof">Edit Profile</h4>
       </div>
       <div class="item4">
+        {% for user in users %}
         <div class="card" style="width: 18rem;">
           <img class="card-img-top" src="https://cms-tc.pbskids.org/arthurwebsite/resources/static/arthur_twitter_card.png" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 class="card-title">{{user.name}}</h5>
+            <p class="card-text" id="blacktext">{{user.about_me}}</p>
             <a href="/profile_view" class="btn btn-primary">Go somewhere</a>
           </div>
         </div>
+        {% endfor %}
     </div>
     </div>
   </body>
