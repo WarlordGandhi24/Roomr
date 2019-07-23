@@ -11,6 +11,12 @@
     'menu menu menu right'
     'search search search search';
 }
+p {
+  color: white;
+}
+h4 {
+  color: white;
+}
 #head {
   text-align: center;
 }
@@ -63,6 +69,12 @@
 }
 #prof {
   text-align: center;
+}
+#specialtext {
+  color: white;
+}
+#blacktext {
+  color: black;
 }
 body {
   background-color: #262626;
