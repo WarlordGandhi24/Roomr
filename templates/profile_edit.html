@@ -38,28 +38,32 @@
       <h1 id = "pref" >Room Preferences</h1>
       <hr>
       <p id = "pref"><b>Noise Level:</b></p>
-      <select id = "pref">
-        <option value="quiet">Quiet</option>
-        <option value="loud">Loud</option>
-      </select>
+      <input id = "pref" name = "user_noise_level" list="hosting-plan" type="text">
+      <datalist id="hosting-plan">
+          <option value="Quiet"/>
+          <option value="Loud"/>
+      </datalist>
       <br><br>
       <p id = "pref"><b>Cleanliness:</b></p>
-      <select id = "pref">
-        <option value="org">Organized</option>
-        <option value="disorg">Disorganized</option>
-      </select>
+      <input id = "pref" name = "user_cleanliness" list="hosting-plan4" type="text">
+      <datalist id="hosting-plan4">
+          <option value="Organized"/>
+          <option value="Disorganized"/>
+      </datalist>
       <br><br>
       <p id = "pref"><b>When Do You Go To Sleep?:</b></p>
-      <select id = "pref">
-        <option value="early">Early</option>
-        <option value="late">Late</option>
-      </select>
+      <input id = "pref" name = "user_sleep_time" list="hosting-plan2" type="text">
+      <datalist id="hosting-plan2">
+          <option value="Early"/>
+          <option value="Late"/>
+      </datalist>
       <br><br>
       <p id = "pref"><b>When Do You Wake Up?:</b></p>
-      <select id = "pref">
-        <option value="early">Early</option>
-        <option value="late">Late</option>
-      </select>
+      <input id = "pref" name = "user_wake_time" list="hosting-plan3" type="text">
+      <datalist id="hosting-plan3">
+          <option value="Early"/>
+          <option value="Late"/>
+      </datalist>
       <br><br>
       <div>
         <label id = "pref" for="a">Do You Study in Your Room?:</label>
