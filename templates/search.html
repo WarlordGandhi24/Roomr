@@ -14,7 +14,7 @@
     <div class="grid-container">
       <div class="item1">
         <div class="item1">
-          <image id="main" src="https://i.imgur.com/BKPQnUQ.png">
+          <a href="/"><image id="main" src="https://i.imgur.com/BKPQnUQ.png"></a>
           <hr>
         </div>
       </div>
@@ -51,7 +51,7 @@
         <button class="btn btn-success" id="search">Search</button>
       </div>
       <div class="item3">
-        <h4 id="prof">Edit Profile</h4>
+        <a href="/profile_edit"><button id="profile_edit" class="btn btn-danger"> Edit Profile</button></a>
       </div>
       <div class="item4">
         {% for user in users %}
@@ -60,7 +60,7 @@
           <div class="card-body">
             <h5 class="card-title" id="blacktext">{{user.name}}</h5>
             <p class="card-text" id="blacktext">{{user.about_me}}</p>
-            <a href="/profile_view" class="btn btn-primary">Go somewhere</a>
+            <a href="/profile_view?prof={{user.id}}" class="btn btn-primary">See profile</a>
           </div>
         </div>
         {% endfor %}

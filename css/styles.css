@@ -15,6 +15,29 @@
   position: absolute;
   right: 10px;
   top: 10;
+  background-color:  rgb(106, 168, 79);
+  border-color:  rgb(106, 168, 79);
+}
+#logout {
+  position: absolute;
+  right: 10px;
+  top: 10;
+  background-color:  rgb(106, 168, 79);
+  border-color:  rgb(106, 168, 79);
+}
+#search {
+  position: absolute;
+  right: 90px;
+  top: 10;
+  background-color:  rgb(106, 168, 79);
+  border-color:  rgb(106, 168, 79);
+}
+#profile_edit {
+  position: absolute;
+  right: 273px;
+  top: 10;
+  background-color:  rgb(106, 168, 79);
+  border-color:  rgb(106, 168, 79);
 }
 #blurb {
   font-size: 15px;

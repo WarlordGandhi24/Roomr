@@ -15,23 +15,24 @@
       <div class="item2">
         <image src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" id="pfp">
         <br><br>
-        <button id = "pref" class="btn btn-info">Submit Image</button>
+        <button type="button" id="pref" class="btn btn-info">Submit Image</button>
+        <script src="../scripts/script.js" type="text/javascript"></script>
       </div>
       <div class="item3">
         <p class= "first" id = "bio1"><b>Name:</b></p>
-        <textarea name = "user_name"id="sub1" rows = "1" cols="20"></textarea>
+        <textarea name = "user_name"id="sub1" rows = "1" cols="20">{{user.name}}</textarea>
         <p class= "first" id = "bio2"><b>School:</b></p>
-        <textarea name = "user_school" id="sub2" rows = "1" cols="20"></textarea>
+        <textarea name = "user_school" id="sub2" rows = "1" cols="20">{{user.school}}</textarea>
         <p class = "first" id = "bio3"><b>Major:</b></p>
-        <textarea name = "user_major" id="sub3" rows = "1" cols="20"></textarea>
+        <textarea name = "user_major" id="sub3" rows = "1" cols="20">{{user.major}}</textarea>
         <p class="first"id = "bio4"><b>Gender:</b></p>
-        <textarea name = "user_gender" id="sub4" rows = "1" cols="20"></textarea>
+        <textarea name = "user_gender" id="sub4" rows = "1" cols="20">{{user.gender}}</textarea>
       </div>
       <div class="item4">
         <p class="first"id = "bio5"><b>Public?</b></p>
         <input type="checkbox" name="public" value="" id="public">
         <p id = "about"><b>About Me:</b></p>
-        <textarea name = "user_about_me"id="aboutme" rows="7" cols="50"></textarea>
+        <textarea name = "user_about_me"id="aboutme" rows="7" cols="50">{{user.about_me}}</textarea>
       </div>
       <br>
       <div class="item5">
@@ -41,24 +42,28 @@
         <select id = "pref">
           <option value="quiet">Quiet</option>
           <option value="loud">Loud</option>
+          <option value="ind">Indifferent</option>
         </select>
         <br><br>
         <p id = "pref"><b>Cleanliness:</b></p>
         <select id = "pref">
           <option value="org">Organized</option>
           <option value="disorg">Disorganized</option>
+          <option value="ind">Indifferent</option>
         </select>
         <br><br>
         <p id = "pref"><b>When Do You Go To Sleep?:</b></p>
         <select id = "pref">
           <option value="early">Early</option>
-          <option value="late">late</option>
+          <option value="late">Late</option>
+          <option value="ind">Indifferent</option>
         </select>
         <br><br>
         <p id = "pref"><b>When Do You Wake Up?:</b></p>
         <select id = "pref">
           <option value="early">Early</option>
-          <option value="late">late</option>
+          <option value="late">Late</option>
+          <option value="ind">Indifferent</option>
         </select>
         <br><br>
         <div>
@@ -70,18 +75,17 @@
           <h1>Hobbies/Interests</h1>
           <hr>
           <p id = "pref"><b>What Kind of Music Do You Like?</b></p><br>
-          <textarea name = "user_music_genre" id = "pref" rows = "3" cols="60"></textarea><br><br>
+          <textarea name = "user_music_genre" id = "pref" rows = "3" cols="60">{{user.music_genre}}</textarea><br><br>
           <p id = "pref"><b>What Kind of Movies Do You Like?</b></p><br>
-          <textarea name = "user_movies" id = "pref" rows = "3" cols="60"></textarea><br><br>
+          <textarea name = "user_movies" id = "pref" rows = "3" cols="60">{{user.movies}}</textarea><br><br>
           <p id = "pref"><b>What Kind of Games (Sports and Video Games) Do You Like?</b></p><br>
-          <textarea name = "user_games"id = "pref" rows = "3" cols="60"></textarea><br><br>
+          <textarea name = "user_games"id = "pref" rows = "3" cols="60">{{user.games}}</textarea><br><br>
           <p id = "pref"><b>Misc. Interests</b></p><br>
-          <textarea name = "user_misc" id = "pref" rows = "3" cols="60"></textarea><br><br>
+          <textarea name = "user_misc" id = "pref" rows = "3" cols="60">{{user.misc}}</textarea><br><br>
           <input type="submit" value="Submit">
           <a href='/search' id = "pref" class="btn btn-danger" type="button">Submit Profile</a>
         </div>
       </div>
     </form>
-    <script src="script.js" type="text/javascript"></script>
   </body>
 </html>
