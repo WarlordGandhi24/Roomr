@@ -1,7 +1,5 @@
 
-.item1 {
-  grid-area: header;
-}
+.item1 {  grid-area: header; }
 .item2 { grid-area: menu; }
 .item3 { grid-area: main; }
 .item4 { grid-area: right; }
@@ -10,10 +8,9 @@
 .grid-container {
   display: grid;
   grid-template-areas:
-    'header header header'
-    'menu main right'
-    'footer footer footer'
-    'whatever whatever whatever';
+    'header header header header'
+    'menu main main right'
+    'footer footer whatever whatever';
 }
 .grid-container > div {
   padding: 20px 0;
@@ -31,6 +28,12 @@ textarea {
 }
 #pref {
   margin-left: 10px;
+}
+#batton {
+  margin-left: auto;
+}
+body {
+  background-color: #fce803;
 }
 /*
 #bio1 {
@@ -101,7 +104,4 @@ textarea{
   position: relative;
   left: 265;
   bottom: 247;
-}
-body {
-  background-color: #fce803;
 }
