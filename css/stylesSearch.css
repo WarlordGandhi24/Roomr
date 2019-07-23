@@ -2,11 +2,13 @@
 .item2 { grid-area: menu; }
 .item3 { grid-area: right; }
 .item4 { grid-area: search; }
+.item5 { grid-area: menu2; }
+.item6 { grid-area: menu3; }
 .grid-container {
   display: grid;
   grid-template-areas:
     'header header header header'
-    'menu menu menu right'
+    'menu menu2 menu3 right'
     'search search search search';
 }
 #head {
