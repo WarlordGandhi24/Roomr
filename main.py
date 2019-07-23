@@ -38,12 +38,6 @@ class User(ndb.Model):
     hobbies = ndb.StringProperty()
     firsttime = ndb.StringProperty()
 
-
-
-
-
-
-
 class MainPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
