@@ -116,7 +116,7 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.misc = self.request.get("user_misc")
         new_user.study_in_room = bool(self.request.get('user_study_in_room', default_value=''))
         new_user.put()
-        self.redirect('/profile_edit')
+        self.redirect('/search')
 
 class ProfileViewPage(webapp2.RequestHandler):
     def get(self):
