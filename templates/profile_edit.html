@@ -3,7 +3,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/css/stylesProf.css">
   </head>
   <body>
@@ -15,11 +14,9 @@
       <hr>
     </div>
     <div class="item2">
-      <div id="profile-container">
-        <image id="profileImage" src="http://lorempixel.com/100/100" />
-      </div>
-      <input id="imageUpload" type="file"
-       name="profile_photo" placeholder="Photo" required="" capture>
+      <image src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" id="pfp">
+      <br><br>
+      <button id = "pref" class="btn btn-info">Submit Image</button>
     </div>
     <div class="item3">
       <p class= "first" id = "bio1"><b>Name:</b></p>
@@ -45,24 +42,28 @@
       <select id = "pref">
         <option value="quiet">Quiet</option>
         <option value="loud">Loud</option>
+        <option value="ind">Indifferent</option>
       </select>
       <br><br>
       <p id = "pref"><b>Cleanliness:</b></p>
       <select id = "pref">
         <option value="org">Organized</option>
         <option value="disorg">Disorganized</option>
+        <option value="ind">Indifferent</option>
       </select>
       <br><br>
       <p id = "pref"><b>When Do You Go To Sleep?:</b></p>
       <select id = "pref">
         <option value="early">Early</option>
-        <option value="late">late</option>
+        <option value="late">Late</option>
+        <option value="ind">Indifferent</option>
       </select>
       <br><br>
       <p id = "pref"><b>When Do You Wake Up?:</b></p>
       <select id = "pref">
         <option value="early">Early</option>
-        <option value="late">late</option>
+        <option value="late">Late</option>
+        <option value="ind">Indifferent</option>
       </select>
       <br><br>
       <div>
