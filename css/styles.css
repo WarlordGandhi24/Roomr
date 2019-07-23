@@ -16,6 +16,11 @@
   right: 10px;
   top: 10;
 }
+#logout {
+  position: absolute;
+  right: 10px;
+  top: 10;
+}
 #blurb {
   font-size: 15px;
   margin: auto;

@@ -7,8 +7,12 @@
   </head>
   <body>
     {% if user %}
-    <h1>User is {{user.email()}}</h1>
-    <a href="{{logout_url}}">Logout</a>
+    <!-- <h1>User is {{user.email()}}</h1> -->
+    <!-- <a href="{{logout_url}}">Logout</a> -->
+    <a href="{{logout_url}}"><button id="logout" class="btn btn-danger">Log out</button></a>
+    <image id="mainpage" src="https://i.imgur.com/BKPQnUQ.png">
+    <p id="blurb">The #1 Webapp to Find Your Next Roommate</p>
+    <p id="team">Teenage Mutant Jinja Turtles</p>
     {% else %}
     <a href="{{login_url}}"><button id="login" class="btn btn-danger">Log In</button></a>
     <image id="mainpage" src="https://i.imgur.com/BKPQnUQ.png">
