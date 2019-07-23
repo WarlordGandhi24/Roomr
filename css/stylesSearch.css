@@ -1,14 +1,14 @@
 .item1 {  grid-area: header; }
-.item2 { grid-area: menu; }
+.item2 { grid-area: menu; background-color: grey; }
 .item3 { grid-area: right; }
 .item4 { grid-area: search; }
-.item5 { grid-area: menu2; }
+.item5 { grid-area: menu2; background-color: grey; }
 .item6 { grid-area: menu3; }
 .grid-container {
   display: grid;
   grid-template-areas:
     'header header header header'
-    'menu menu2 menu3 right'
+    'menu menu menu right'
     'search search search search';
 }
 #head {
@@ -27,8 +27,44 @@
   width:  100px;
 
 }
+#clean {
+  position: absolute;
+  top: 157px;
+  left:120px;
+}
+#cleantag {
+  position: absolute;
+  top: 117px;
+  left:120px;
+}
+#sleep {
+  position: absolute;
+  top: 157px;
+  left: 260px;
+}
+#sleeptag {
+  position: absolute;
+  top: 117px;
+  left:260px;
+}
+#wake {
+  position: absolute;
+  top: 157px;
+  left:470px;
+}
+#waketag {
+  position: absolute;
+  top: 117px;
+  left:470px;
+}
+#search {
+  position: relative;
+  float: right;
+}
+#prof {
+  text-align: center;
+}
 body {
-  background-image: url('https://media1.giphy.com/media/zkA5kRmmOfoUE/giphy.gif');
-  background-size: cover;
+  background-color: #93979e;
   color: white;
 }
