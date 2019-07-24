@@ -87,17 +87,15 @@ class ProfileEditPage(webapp2.RequestHandler):
         user = users.get_current_user()
         if user != None:
             template = JINJA_ENVIRONMENT.get_template('templates/profile_edit.html')
-
             current_user = User.query(User.id == user.user_id()).fetch()
             if(len(current_user) > 0):
                 current_user = current_user[0]
             else:
                 current_user = User(parent=root_parent())
-            print(current_user.about_me)
             list = getList()
             data = {
                 'user': current_user,
-                'colleges': list
+                'colleges': list,
             }
             self.response.write(template.render(data))
         else:
@@ -204,6 +202,8 @@ class AjaxProfilePictureSave(webapp2.RequestHandler):
         else:
             new_user = User(parent=root_parent())
         new_user.pfpurl = json.loads(self.request.body)["answer"]
+
+        print(new_user.pfpurl)
 
 
 class ChatPage(webapp2.RequestHandler):
