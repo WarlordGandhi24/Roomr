@@ -27,7 +27,9 @@ submit.addEventListener('click', ()=>{
   pfp.width = "350";
   pfp.height = "350";
 
+
   postData('/ajax/update_pfp', {answer: pfp_url})
   .then(data => console.log(JSON.stringify(data))) // JSON-string from `response.json()` call
   .catch(error => console.error(error));
+
 })

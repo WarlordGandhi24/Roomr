@@ -20,38 +20,43 @@
       </div>
       <div class="item2">
         <h4>Filters</h4>
-        <p>Noise Level:</p>
-        <select name="noise">
-          <option value="quiet">Quiet</option>
-          <option value="loud">Loud</option>
-          <option value="ind">Indifferent</option>
-        </select>
-        <p id ="cleantag">Cleanliness:</p>
-        <select name="clean" id="clean">
-          <option value="org">Organized</option>
-          <option value="disorg">Disorganized</option>
-          <option value="ind">Indifferent</option>
-        </select>
-        <p id="sleeptag">When Do You Go To Sleep?</p>
-        <select name="sleep" id="sleep">
-          <option value="early">Early</option>
-          <option value="late">Late</option>
-          <option value="ind">Indifferent</option>
-        </select>
-        <p id="waketag">When Do You Wake Up?</p>
-        <select name="wake" id="wake">
-          <option value="early">Early</option>
-          <option value="late">Late</option>
-          <option value="ind">Indifferent</option>
-        </select>
-        <div id = "study">
-          <label id = "specialtext" for="a">Do You Study in Your Room?:</label>
-          <input name = "study"type="checkbox" id="a" value="">
+        <form method  = "get" action = "/searchfilter">
+          <p>Noise Level:</p>
+          <select name="noise">
+            <option value="Quiet">Quiet</option>
+            <option value="Loud">Loud</option>
+            <option value="Indifferent">Indifferent</option>
+          </select>
+          <p id ="cleantag">Cleanliness:</p>
+          <select name="clean" id="clean">
+            <option value="Organized">Organized</option>
+            <option value="Disorganized">Disorganized</option>
+            <option value="Indifferent">Indifferent</option>
+          </select>
+          <p id="sleeptag">When Do You Go To Sleep?</p>
+          <select name="sleep" id="sleep">
+            <option value="Early">Early</option>
+            <option value="Late">Late</option>
+            <option value="Indifferent">Indifferent</option>
+          </select>
+          <p id="waketag">When Do You Wake Up?</p>
+          <select name="wake" id="wake">
+            <option value="Early">Early</option>
+            <option value="Late">Late</option>
+            <option value="Indifferent">Indifferent</option>
+          </select>
+          <p id="studytag">Do You Study in Your Room?</p>
+          <select name="study" id="study">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            <option value="Indifferent">Indifferent</option>
+          </select>
+          <!--<p>School: </p>
+          <textarea name = "school"id="sub1" rows = "1" cols="20"></textarea>
+          -->
+          <input id="search" type="submit" value="Submit">
+        </form>
         </div>
-        <p>School: </p>
-        <textarea name = "school"id="sub1" rows = "1" cols="20"></textarea>
-        <button class="btn btn-success" id="search">Search</button>
-      </div>
       <div class="item3">
         <a href="/profile_edit"><button id="profile_edit" class="btn btn-danger"> Edit Profile</button></a>
       </div>
