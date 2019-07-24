@@ -29,6 +29,10 @@ h1 {
   width:  100px;
 
 }
+#profpic {
+  width: 350;
+  height: 350;
+}
 textarea {
   resize: none;
 }
