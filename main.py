@@ -188,8 +188,8 @@ class SearchFilter(webapp2.RequestHandler):
 class AjaxProfilePictureSave(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
-        new_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
-        new_user.pfpurl = json.loads(self.request.body)["answer"]
+        #new_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
+        User.pfpurl = json.loads(self.request.body)["answer"]
         #data = {'url': note}
         #User.pfpurl = self.request.get("answer")
 
