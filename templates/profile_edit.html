@@ -22,7 +22,7 @@
         <p class= "first" id = "bio1"><b>Name:</b></p>
         <textarea name = "user_name"id="sub1" rows = "1" cols="20">{{user.name}}</textarea>
         <p class="first"id = "bio4"><b>Gender:</b></p>
-        <select name="user_gender" id="gender">
+        <select name="user_gender" id="gender" selected="{{user.gender}}">
           <option value="Male">Male</option>
           <option value="Female">Female</option>
           <option value="Other">Other</option>
@@ -30,7 +30,7 @@
         <p class = "first" id = "bio3"><b>Major:</b></p>
         <textarea name = "user_major" id="sub3" rows = "1" cols="20">{{user.major}}</textarea>
         <p id="collegetag"><b>College:</b></p>
-        <select name="user_school" id="college">
+        <select name="user_school" id="college" selected="{{user.school}}">
           {% for college in colleges %}
             <option value="{{college.name}}">{{college.name}}</option>
           {% endfor %}
@@ -47,35 +47,35 @@
         <h1 id = "pref" >Room Preferences</h1>
         <hr>
         <p id = "pref"><b>Noise Level:</b></p>
-        <select name="user_noise_level" id = "pref">
+        <select name="user_noise_level" id = "pref" selected="{{user.noise_level}}">
           <option value="Quiet">Quiet</option>
           <option value="Loud">Loud</option>
           <option value="Indifferent">Indifferent</option>
         </select>
         <br><br>
         <p id = "pref"><b>Cleanliness:</b></p>
-        <select name="user_cleanliness" id = "pref">
+        <select name="user_cleanliness" id = "pref" selected="{{user.cleanliness}}">
           <option value="Organized">Organized</option>
           <option value="Disorganized">Disorganized</option>
           <option value="Indifferent">Indifferent</option>
         </select>
         <br><br>
         <p id = "pref"><b>When Do You Go To Sleep?:</b></p>
-        <select name="user_sleep_time" id = "pref">
+        <select name="user_sleep_time" id = "pref" selected="{{user.sleep_time}}">
           <option value="Early">Early</option>
           <option value="Late">Late</option>
           <option value="Indifferent">Indifferent</option>
         </select>
         <br><br>
         <p id = "pref"><b>When Do You Wake Up?:</b></p>
-        <select name="user_wake_time"id = "pref">
+        <select name="user_wake_time"id = "pref" selected="{{user.wake_time}}">
           <option value="Early">Early</option>
           <option value="Late">Late</option>
           <option value="Indifferent">Indifferent</option>
         </select>
         <br><br>
         <p id = "pref"><b>Do You Study in Your Room?:</b></p>
-        <select name="study_in_room"id = "pref">
+        <select name="study_in_room"id = "pref" selected="{{user.study_in_room}}">
           <option value="Yes">Yes</option>
           <option value="No">No</option>
           <option value="Indifferent">Indifferent</option>
