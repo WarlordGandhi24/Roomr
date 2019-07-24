@@ -1,5 +1,3 @@
-
-
 const submit = document.querySelector("#pref")
 const pfp = document.querySelector("#pfp")
 
@@ -26,6 +24,8 @@ submit.addEventListener('click', ()=>{
   pfp.src = pfp_url;
   pfp.width = "350";
   pfp.height = "350";
+
+  console.log(pfp_url)
 
   postData('/ajax/update_pfp', {answer: pfp_url})
   .then(data => console.log(JSON.stringify(data))) // JSON-string from `response.json()` call
