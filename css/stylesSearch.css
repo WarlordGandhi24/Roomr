@@ -82,6 +82,9 @@ h4 {
 .card {
   display: inline-block;
 }
+textarea {
+  resize: none;
+}
 body {
   background-color: #262626;
   background-size: cover;
