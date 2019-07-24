@@ -7,5 +7,4 @@ submit.addEventListener('click', ()=>{
   pfp.width = "350";
   pfp.height = "350";
 
-  
 })

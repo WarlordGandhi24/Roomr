@@ -4,6 +4,7 @@ from google.appengine.ext import ndb
 from google.appengine.api import users
 from google.appengine.api import images
 
+
 import json
 import jinja2
 import webapp2
@@ -18,7 +19,7 @@ def root_parent():
 
 def GetUserChat(user):
     '''Queries datastore to get the current value of the chat associated with this user id.'''
-    chats = Chats.query(Chats.id == user.user_id(), ancestor=root_parent()).fetch()
+    chats = Chats.query(Chats.from_id == user.user_id(), ancestor=root_parent()).fetch()
     if len(chats) > 0:
         # We found a note, return it.
         return chats[0]
@@ -26,8 +27,10 @@ def GetUserChat(user):
         # We didn't find a note, return None
         return None
 class Chats(ndb.Model):
-    id = ndb.StringProperty()
-    logs = ndb.StringProperty()
+    from_id = ndb.StringProperty()
+    to_id = ndb.StringProperty()
+    combo_id = ndb.StringProperty()
+    msg = ndb.StringProperty()
 class User(ndb.Model):
     '''A database entry representing a single user.'''
     pfpurl = ndb.StringProperty()
@@ -177,35 +180,30 @@ class SearchFilter(webapp2.RequestHandler):
         }
         self.response.write(template.render(data))
 
+class AjaxProfilePictureSave(webapp2.RequestHandler):
+    def post(self):
+        user = users.get_current_user()
+        data = {'url': note}
+        User.pfpurl = self.request.get("answer")
 
 class ChatPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/chat.html')
 
-        checkForChat = Chats.query(Chats.id == user.user_id(), ancestor=root_parent()).fetch()
-        if(len(checkForChat) > 0):
-            chat = checkForChat[0]
-        else:
-            chat = Chats(parent=root_parent())
-        data = {
-        'user' : user,
-        'logs': chat.logs,
-        }
+        chats = Chats.query(Chats.from_id == user.user_id(), ancestor=root_parent()).fetch()
 
+        data ={
+        'chats': chats,
+        'initialCount' : len(chats)
+        }
         self.response.write(template.render(data))
     def post(self):
         user = users.get_current_user()
-        newChat = Chats.query(Chats.id == user.user_id(), ancestor=root_parent()).fetch()
-        if(len(newChat) > 0):
-            newChat = newChat[0]
-        else:
-            newChat = Chats(parent=root_parent())
-        newChat.id = user.user_id()
-        currentLogs = newChat.logs
+        newChat = Chats(parent=root_parent())
+        newChat.from_id = user.user_id()
         newMsg = self.request.get("userMsg")
-        print(currentLogs + newMsg)
-        newChat.logs =  newMsg
+        newChat.msg = newMsg
         newChat.put()
         self.redirect("/chat")
 
@@ -217,13 +215,21 @@ class AjaxGetNewMsg(webapp2.RequestHandler):
             self.response.status = 401
             return
         chat = GetUserChat(user)
-        logs = ''
+        msg = ''
         if chat is not None:
             # If there was a current note, update note.
-            logs = chat.logs
+            msg = chat.msg
 
         # build a dictionary that contains the data that we want to return.
-        data = {'logs': logs}
+        chatFromUser = Chats.query(Chats.from_id == user.user_id(),ancestor=root_parent()).fetch()
+        print(chatFromUser)
+        msgs = []
+        for x in chatFromUser:
+            msgs.append(x.msg)
+        data = {
+        'msgCount': len(chatFromUser),
+        'msgs': msgs
+        }
         # Note the different content type.
         self.response.headers['Content-Type'] = 'application/json'
         # Turn data dict into a json string and write it to the response
@@ -238,5 +244,6 @@ app = webapp2.WSGIApplication([
     ('/search', SearchPage),
     ('/searchfilter', SearchFilter),
     ('/ajax/get_updated_log', AjaxGetNewMsg),
-    ('/chat', ChatPage)
+    ('/chat', ChatPage),
+    ('/ajax/update_pfp', AjaxProfilePictureSave)
 ], debug=True)
