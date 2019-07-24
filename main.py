@@ -137,10 +137,26 @@ class SearchPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
+        toDisplay = User.query(ancestor=root_parent()).fetch()
         data = {
-            'users': User.query(ancestor=root_parent()).fetch()
+            'users': toDisplay
         }
         self.response.write(template.render(data))
+
+class SearchFilter(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('templates/search.html')
+        noise = self.request.get("noise")
+        clean = self.request.get("clean")
+        sleep = self.request.get("sleep")
+        wake = self.request.get("wake")
+        study = self.request.get("study")
+        items = User.query(User.noise_level == noise and User.user_cleanliness == clean and User.user_sleep_time == sleep and User.user_wake_time == wake and User.study_in_room == study).fetch()
+        data = {
+            'users': items
+        }
+        self.response.write(template.render(data))
+
 
 class ChatPage(webapp2.RequestHandler):
     def get(self):
@@ -192,6 +208,7 @@ class AjaxGetNewMsg(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'application/json'
         # Turn data dict into a json string and write it to the response
         self.response.write(json.dumps(data))
+
 
 
 app = webapp2.WSGIApplication([

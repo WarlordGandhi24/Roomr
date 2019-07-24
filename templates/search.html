@@ -21,33 +21,35 @@
       <div class="item2">
         <h4>Filters</h4>
         <p>Noise Level:</p>
-        <select>
+        <select name="noise">
           <option value="quiet">Quiet</option>
           <option value="loud">Loud</option>
           <option value="ind">Indifferent</option>
         </select>
         <p id ="cleantag">Cleanliness:</p>
-        <select id="clean">
+        <select name="clean" id="clean">
           <option value="org">Organized</option>
           <option value="disorg">Disorganized</option>
           <option value="ind">Indifferent</option>
         </select>
         <p id="sleeptag">When Do You Go To Sleep?</p>
-        <select id="sleep">
+        <select name="sleep" id="sleep">
           <option value="early">Early</option>
           <option value="late">Late</option>
           <option value="ind">Indifferent</option>
         </select>
         <p id="waketag">When Do You Wake Up?</p>
-        <select id="wake">
+        <select name="wake" id="wake">
           <option value="early">Early</option>
           <option value="late">Late</option>
           <option value="ind">Indifferent</option>
         </select>
         <div id = "study">
           <label id = "specialtext" for="a">Do You Study in Your Room?:</label>
-          <input name = "user_public"type="checkbox" id="a" value="">
+          <input name = "study"type="checkbox" id="a" value="">
         </div>
+        <p>School: </p>
+        <textarea name = "school"id="sub1" rows = "1" cols="20"></textarea>
         <button class="btn btn-success" id="search">Search</button>
       </div>
       <div class="item3">
