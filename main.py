@@ -166,6 +166,7 @@ class SearchFilter(webapp2.RequestHandler):
         sleep = self.request.get("sleep")
         wake = self.request.get("wake")
         study = self.request.get("study")
+        gender = self.request.get("gender")
 
         items = User.query()
         items = items.filter(User.school == current_user[0].school)
@@ -179,6 +180,8 @@ class SearchFilter(webapp2.RequestHandler):
             items = items.filter(User.wake_time == wake)
         if (study != "Indifferent"):
             items = items.filter(User.study_in_room == study)
+        if (gender != "Indifferent"):
+            items = items.filter(User.gender == gender)
         items = items.fetch()
          # and (User.cleanliness == clean) and (User.sleep_time == sleep) and (User.wake_time == wake) and (User.study_in_room == study)).fetch()
         #print(items)
@@ -190,11 +193,18 @@ class SearchFilter(webapp2.RequestHandler):
 
 class AjaxProfilePictureSave(webapp2.RequestHandler):
     def post(self):
-        user = users.get_current_user()
         #new_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
-        User.pfpurl = json.loads(self.request.body)["answer"]
         #data = {'url': note}
         #User.pfpurl = self.request.get("answer")
+        user = users.get_current_user()
+
+        new_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
+        if(len(new_user) > 0):
+            new_user = new_user[0]
+        else:
+            new_user = User(parent=root_parent())
+        new_user.pfpurl = json.loads(self.request.body)["answer"]
+        new_user.put()
 
 
 class ChatPage(webapp2.RequestHandler):
