@@ -166,6 +166,7 @@ class SearchFilter(webapp2.RequestHandler):
         sleep = self.request.get("sleep")
         wake = self.request.get("wake")
         study = self.request.get("study")
+        gender = self.request.get("gender")
 
         items = User.query()
         items = items.filter(User.school == current_user[0].school)
@@ -179,6 +180,8 @@ class SearchFilter(webapp2.RequestHandler):
             items = items.filter(User.wake_time == wake)
         if (study != "Indifferent"):
             items = items.filter(User.study_in_room == study)
+        if (gender != "Indifferent"):
+            items = items.filter(User.gender == gender)
         items = items.fetch()
          # and (User.cleanliness == clean) and (User.sleep_time == sleep) and (User.wake_time == wake) and (User.study_in_room == study)).fetch()
         #print(items)
