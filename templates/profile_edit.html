@@ -13,8 +13,11 @@
         <hr>
       </div>
       <div class="item2">
-        
-        <image src="{{user.pfpurl}}" id="pfp">
+        {% if user.pfpurl %}
+          <image src="{{user.pfpurl}}" id="pfp">
+        {% else %}
+          <image src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" id="pfp">
+        {% endif %}
         <br><br>
         <button type="button" id="pref" class="btn btn-info">Submit Image</button>
         <script src="/scripts/script.js" type="text/javascript"></script>
@@ -23,7 +26,7 @@
         <p class= "first" id = "bio1"><b>Name:</b></p>
         <textarea name = "user_name"id="sub1" rows = "1" cols="20">{{user.name}}</textarea>
         <p class="first"id = "bio4"><b>Gender:</b></p>
-        <select name="user_gender" id="gender"">
+        <select name="user_gender" id="gender">
           {% if user.gender == "Male" %}
             <option value="Male" selected>Male</option>
           {% else %}

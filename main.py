@@ -59,7 +59,6 @@ class MainPage(webapp2.RequestHandler):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/main.html')
         User.firsttime = True
-        User.pfpurl = "http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png"
         login = users.create_login_url('/profile_edit')
         if(User.firsttime == True):
             login = users.create_login_url('/profile_edit')
