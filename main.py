@@ -31,6 +31,7 @@ class Chats(ndb.Model):
     to_id = ndb.StringProperty()
     combo_id = ndb.StringProperty()
     msg = ndb.StringProperty()
+    date = ndb.DateTimeProperty(auto_now_add=True)
 class User(ndb.Model):
     '''A database entry representing a single user.'''
     pfpurl = ndb.StringProperty()
@@ -191,7 +192,10 @@ class ChatPage(webapp2.RequestHandler):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/chat.html')
 
-        chats = Chats.query(Chats.from_id == user.user_id(), ancestor=root_parent()).fetch()
+        chats = Chats.query(Chats.from_id == user.user_id(), ancestor=root_parent())
+        chats = chats.order(-Chats.date)
+        chats = chats.fetch()
+
 
         data ={
         'chats': chats,
