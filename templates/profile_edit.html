@@ -22,14 +22,15 @@
         <p class= "first" id = "bio1"><b>Name:</b></p>
         <textarea name = "user_name"id="sub1" rows = "1" cols="20">{{user.name}}</textarea>
         <p class="first"id = "bio4"><b>Gender:</b></p>
-        <select name="gender" id="gender">
+        <select name="user_gender" id="gender">
           <option value="Male">Male</option>
           <option value="Female">Female</option>
+          <option value="Other">Other</option>
         </select>
         <p class = "first" id = "bio3"><b>Major:</b></p>
         <textarea name = "user_major" id="sub3" rows = "1" cols="20">{{user.major}}</textarea>
         <p id="collegetag"><b>College:</b></p>
-        <select name="college" id="college">
+        <select name="user_school" id="college">
           {% for college in colleges %}
             <option value="{{college.name}}">{{college.name}}</option>
           {% endfor %}

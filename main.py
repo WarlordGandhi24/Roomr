@@ -129,7 +129,6 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.games = self.request.get("user_games")
         new_user.misc = self.request.get("user_misc")
         new_user.study_in_room = self.request.get("study_in_room")
-
         new_user.put()
         self.redirect('/search')
 
@@ -160,12 +159,16 @@ class SearchPage(webapp2.RequestHandler):
 class SearchFilter(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
+        user = users.get_current_user()
+        current_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
         noise = self.request.get("noise")
         clean = self.request.get("clean")
         sleep = self.request.get("sleep")
         wake = self.request.get("wake")
         study = self.request.get("study")
+
         items = User.query()
+        items = items.filter(User.school == current_user[0].school)
         if (noise != "Indifferent"):
             items = items.filter(User.noise_level == noise)
         if (clean != "Indifferent"):
