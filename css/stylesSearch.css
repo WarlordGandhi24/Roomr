@@ -89,6 +89,9 @@ h4 {
   color: black;
   white-space: nowrap;
 }
+#submitbut {
+  color: #eb6434;
+}
 .card-text {
   word-wrap: break-word;
 }
