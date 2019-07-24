@@ -184,8 +184,9 @@ class SearchFilter(webapp2.RequestHandler):
 class AjaxProfilePictureSave(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
-        data = {'url': note}
-        User.pfpurl = self.request.get("answer")
+        #data = {'url': note}
+        #User.pfpurl = self.request.get("answer")
+        User.pfpurl = json.loads(self.request.body)["answer"]
 
 class ChatPage(webapp2.RequestHandler):
     def get(self):
