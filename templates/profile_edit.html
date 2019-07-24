@@ -32,7 +32,11 @@
         <p id="collegetag"><b>College:</b></p>
         <select name="user_school" id="college" selected="{{user.school}}">
           {% for college in colleges %}
-            <option value="{{college.name}}">{{college.name}}</option>
+            {% if college.name == user.school %}
+              <option value="{{college.name}}" selected>{{college.name}}</option>
+            {% else %}
+              <option value="{{college.name}}">{{college.name}}</option>
+            {% endif %}
           {% endfor %}
         </select>
       </div>
@@ -48,37 +52,72 @@
         <hr>
         <p id = "pref"><b>Noise Level:</b></p>
         <select name="user_noise_level" id = "pref" selected="{{user.noise_level}}">
-          <option value="Quiet">Quiet</option>
-          <option value="Loud">Loud</option>
-          <option value="Indifferent">Indifferent</option>
+          {% if user.noise_level == "Quiet" %}
+            <option value="Quiet" selected>Quiet</option>
+          {% else %}
+            <option value="Quiet">Quiet</option>
+          {% endif %}
+          {% if user.noise_level == "Loud" %}
+            <option value="Loud" selected>Loud</option>
+          {% else %}
+            <option value="Loud">Loud</option>
+          {% endif %}
         </select>
         <br><br>
         <p id = "pref"><b>Cleanliness:</b></p>
         <select name="user_cleanliness" id = "pref" selected="{{user.cleanliness}}">
-          <option value="Organized">Organized</option>
-          <option value="Disorganized">Disorganized</option>
-          <option value="Indifferent">Indifferent</option>
+          {% if user.cleanliness == "Organized" %}
+            <option value="Organized" selected>Organized</option>
+          {% else %}
+            <option value="Organized">Organized</option>
+          {% endif %}
+          {% if user.cleanliness == "Disorganized" %}
+            <option value="Disorganized" selected>Disorganized</option>
+          {% else %}
+            <option value="Disorganized">Disorganized</option>
+          {% endif %}
         </select>
         <br><br>
         <p id = "pref"><b>When Do You Go To Sleep?:</b></p>
         <select name="user_sleep_time" id = "pref" selected="{{user.sleep_time}}">
-          <option value="Early">Early</option>
-          <option value="Late">Late</option>
-          <option value="Indifferent">Indifferent</option>
+          {% if user.sleep_time == "Early" %}
+            <option value="Early" selected>Early</option>
+          {% else %}
+            <option value="Early">Early</option>
+          {% endif %}
+          {% if user.sleep_time == "Late" %}
+            <option value="Late" selected>Late</option>
+          {% else %}
+            <option value="Late">Late</option>
+          {% endif %}
         </select>
         <br><br>
         <p id = "pref"><b>When Do You Wake Up?:</b></p>
         <select name="user_wake_time"id = "pref" selected="{{user.wake_time}}">
-          <option value="Early">Early</option>
-          <option value="Late">Late</option>
-          <option value="Indifferent">Indifferent</option>
+          {% if user.sleep_time == "Early" %}
+            <option value="Early" selected>Early</option>
+          {% else %}
+            <option value="Early">Early</option>
+          {% endif %}
+          {% if user.sleep_time == "Late" %}
+            <option value="Late" selected>Late</option>
+          {% else %}
+            <option value="Late">Late</option>
+          {% endif %}
         </select>
         <br><br>
         <p id = "pref"><b>Do You Study in Your Room?:</b></p>
         <select name="study_in_room"id = "pref" selected="{{user.study_in_room}}">
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-          <option value="Indifferent">Indifferent</option>
+          {% if user.study_in_room == "Yes" %}
+            <option value="Yes" selected>Yes</option>
+          {% else %}
+            <option value="Yes">Yes</option>
+          {% endif %}
+          {% if user.study_in_room == "No" %}
+            <option value="No" selected>No</option>
+          {% else %}
+            <option value="No">No</option>
+          {% endif %}
         </select>
         </div>
         <div class="item6">
