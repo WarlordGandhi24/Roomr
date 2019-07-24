@@ -4,6 +4,7 @@ from google.appengine.ext import ndb
 from google.appengine.api import users
 from google.appengine.api import images
 
+
 import json
 import jinja2
 import webapp2
@@ -157,6 +158,11 @@ class SearchFilter(webapp2.RequestHandler):
         }
         self.response.write(template.render(data))
 
+class AjaxProfilePictureSave(webapp2.RequestHandler):
+    def post(self):
+        user = users.get_current_user()
+        data = {'url': note}
+        User.pfpurl = self.request.get("answer")
 
 class ChatPage(webapp2.RequestHandler):
     def get(self):
@@ -217,5 +223,6 @@ app = webapp2.WSGIApplication([
     ('/profile_view', ProfileViewPage),
     ('/search', SearchPage),
     ('/ajax/get_updated_log', AjaxGetNewMsg),
-    ('/chat', ChatPage)
+    ('/chat', ChatPage),
+    ('/ajax/update_pfp', AjaxProfilePictureSave)
 ], debug=True)
