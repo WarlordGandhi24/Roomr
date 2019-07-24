@@ -120,6 +120,7 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.games = self.request.get("user_games")
         new_user.misc = self.request.get("user_misc")
         new_user.study_in_room = self.request.get("study_in_room")
+
         new_user.put()
         self.redirect('/search')
 
@@ -187,9 +188,11 @@ class SearchFilter(webapp2.RequestHandler):
 class AjaxProfilePictureSave(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
+        new_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
+        new_user.pfpurl = json.loads(self.request.body)["answer"]
         #data = {'url': note}
         #User.pfpurl = self.request.get("answer")
-        User.pfpurl = json.loads(self.request.body)["answer"]
+
 
 class ChatPage(webapp2.RequestHandler):
     def get(self):
