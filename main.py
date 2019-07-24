@@ -137,30 +137,33 @@ class ProfileViewPage(webapp2.RequestHandler):
         }
         self.response.write(template.render(actualData))
 
+def getList():
+    list = 'http://universities.hipolabs.com/search?country=United%20States'
+    list_resp = urlfetch.Fetch(list).content
+    return json.loads(list_resp)
+
 class SearchPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
         toDisplay = User.query(ancestor=root_parent()).fetch()
+        list = 'http://universities.hipolabs.com/search?country=United%20States'
+        list = getList()
         data = {
-            'users': toDisplay
+            'users': toDisplay,
+            'colleges': list,
+            'searchOrFilter': False
         }
         self.response.write(template.render(data))
 
 class SearchFilter(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
-        items = None
         noise = self.request.get("noise")
-        print(noise)
         clean = self.request.get("clean")
-        print(clean)
         sleep = self.request.get("sleep")
-        print(sleep)
         wake = self.request.get("wake")
-        print(wake)
         study = self.request.get("study")
-        print(study)
         items = User.query()
         if (noise != "Indifferent"):
             items = items.filter(User.noise_level == noise)
