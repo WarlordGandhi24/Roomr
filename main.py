@@ -30,7 +30,7 @@ class Chats(ndb.Model):
     logs = ndb.StringProperty()
 class User(ndb.Model):
     '''A database entry representing a single user.'''
-    pfp = ndb.BlobProperty()
+    pfpurl = ndb.StringProperty()
     id = ndb.StringProperty()
     name = ndb.StringProperty()
     gender = ndb.StringProperty()
@@ -55,6 +55,7 @@ class MainPage(webapp2.RequestHandler):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/main.html')
         User.firsttime = True
+        User.pfpurl = "http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png"
         login = users.create_login_url('/profile_edit')
         if(User.firsttime == True):
             login = users.create_login_url('/profile_edit')
@@ -116,7 +117,7 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.misc = self.request.get("user_misc")
         new_user.study_in_room = bool(self.request.get('user_study_in_room', default_value=''))
         new_user.put()
-        self.redirect('/profile_edit')
+        self.redirect('/search')
 
 class ProfileViewPage(webapp2.RequestHandler):
     def get(self):
@@ -136,7 +137,26 @@ class SearchPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
-        self.response.write(template.render())
+        toDisplay = User.query(ancestor=root_parent()).fetch()
+        data = {
+            'users': toDisplay
+        }
+        self.response.write(template.render(data))
+
+class SearchFilter(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('templates/search.html')
+        noise = self.request.get("noise")
+        clean = self.request.get("clean")
+        sleep = self.request.get("sleep")
+        wake = self.request.get("wake")
+        study = self.request.get("study")
+        items = User.query(User.noise_level == noise and User.user_cleanliness == clean and User.user_sleep_time == sleep and User.user_wake_time == wake and User.study_in_room == study).fetch()
+        data = {
+            'users': items
+        }
+        self.response.write(template.render(data))
+
 
 class ChatPage(webapp2.RequestHandler):
     def get(self):
@@ -188,6 +208,7 @@ class AjaxGetNewMsg(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'application/json'
         # Turn data dict into a json string and write it to the response
         self.response.write(json.dumps(data))
+
 
 
 app = webapp2.WSGIApplication([

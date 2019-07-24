@@ -13,7 +13,7 @@
         <hr>
       </div>
       <div class="item2">
-        <image src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" id="pfp">
+        <image src={{user.pfpurl}} id="pfp">
         <br><br>
         <button type="button" id="pref" class="btn btn-info">Submit Image</button>
         <script src="/scripts/script.js" type="text/javascript"></script>
@@ -82,8 +82,7 @@
           <textarea name = "user_games"id = "pref" rows = "3" cols="60">{{user.games}}</textarea><br><br>
           <p id = "pref"><b>Misc. Interests</b></p><br>
           <textarea name = "user_misc" id = "pref" rows = "3" cols="60">{{user.misc}}</textarea><br><br>
-          <input type="submit" value="Submit">
-          <a href='/search' id = "pref" class="btn btn-danger" type="button">Submit Profile</a>
+          <input class="btn btn-danger" type="submit" value="Submit">
         </div>
       </div>
     </form>
