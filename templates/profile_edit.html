@@ -22,10 +22,22 @@
         <p class= "first" id = "bio1"><b>Name:</b></p>
         <textarea name = "user_name"id="sub1" rows = "1" cols="20">{{user.name}}</textarea>
         <p class="first"id = "bio4"><b>Gender:</b></p>
-        <select name="user_gender" id="gender" selected="{{user.gender}}">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
+        <select name="user_gender" id="gender"">
+          {% if user.gender == "Male" %}
+            <option value="Male" selected>Male</option>
+          {% else %}
+            <option value="Male">Male</option>
+          {% endif %}
+          {% if user.gender == "Female" %}
+            <option value="Female" selected>Female</option>
+          {% else %}
+            <option value="Female">Female</option>
+          {% endif %}
+          {% if user.gender == "Other" %}
+            <option value="Other" selected>Other</option>
+          {% else %}
+            <option value="Other">Other</option>
+          {% endif %}
         </select>
         <p class = "first" id = "bio3"><b>Major:</b></p>
         <textarea name = "user_major" id="sub3" rows = "1" cols="20">{{user.major}}</textarea>
