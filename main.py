@@ -40,7 +40,7 @@ class User(ndb.Model):
     about_me = ndb.StringProperty()
     noise_level = ndb.StringProperty()
     cleanliness = ndb.StringProperty()
-    study_in_room = ndb.BooleanProperty()
+    study_in_room = ndb.StringProperty()
     sleep_time = ndb.StringProperty()
     wake_time = ndb.StringProperty()
     music_genre = ndb.StringProperty()
@@ -115,7 +115,7 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.movies = self.request.get("user_movies")
         new_user.games = self.request.get("user_games")
         new_user.misc = self.request.get("user_misc")
-        new_user.study_in_room = bool(self.request.get('user_study_in_room', default_value=''))
+        new_user.study_in_room = self.request.get("study_in_room")
         new_user.put()
         self.redirect('/search')
 
@@ -146,12 +146,32 @@ class SearchPage(webapp2.RequestHandler):
 class SearchFilter(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
+        items = None
         noise = self.request.get("noise")
+        print(noise)
         clean = self.request.get("clean")
+        print(clean)
         sleep = self.request.get("sleep")
+        print(sleep)
         wake = self.request.get("wake")
+        print(wake)
         study = self.request.get("study")
-        items = User.query(User.noise_level == noise and User.user_cleanliness == clean and User.user_sleep_time == sleep and User.user_wake_time == wake and User.study_in_room == study).fetch()
+        print(study)
+        items = User.query()
+        if (noise != "Indifferent"):
+            items = items.filter(User.noise_level == noise)
+        if (clean != "Indifferent"):
+            items = items.filter(User.cleanliness == clean)
+        if (sleep != "Indifferent"):
+            items = items.filter(User.sleep_time == sleep)
+        if (wake != "Indifferent"):
+            items = items.filter(User.wake_time == wake)
+        if (study != "Indifferent"):
+            items = items.filter(User.study_in_room == study)
+        items = items.fetch()
+         # and (User.cleanliness == clean) and (User.sleep_time == sleep) and (User.wake_time == wake) and (User.study_in_room == study)).fetch()
+        #print(items)
+        #queryItem = User.query((User.cleanliness == clean) and (User.sleep_time == sleep) and (User.wake_time == wake) and (User.study_in_room == study))
         data = {
             'users': items
         }
@@ -216,6 +236,7 @@ app = webapp2.WSGIApplication([
     ('/profile_edit', ProfileEditPage),
     ('/profile_view', ProfileViewPage),
     ('/search', SearchPage),
+    ('/searchfilter', SearchFilter),
     ('/ajax/get_updated_log', AjaxGetNewMsg),
     ('/chat', ChatPage)
 ], debug=True)
