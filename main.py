@@ -202,6 +202,7 @@ class AjaxProfilePictureSave(webapp2.RequestHandler):
         else:
             new_user = User(parent=root_parent())
         new_user.pfpurl = json.loads(self.request.body)["answer"]
+
         print(new_user.pfpurl)
 
 
