@@ -21,12 +21,20 @@
       <div class="item3">
         <p class= "first" id = "bio1"><b>Name:</b></p>
         <textarea name = "user_name"id="sub1" rows = "1" cols="20">{{user.name}}</textarea>
-        <p class= "first" id = "bio2"><b>School:</b></p>
-        <textarea name = "user_school" id="sub2" rows = "1" cols="20">{{user.school}}</textarea>
+        <p class="first"id = "bio4"><b>Gender:</b></p>
+        <select name="user_gender" id="gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
         <p class = "first" id = "bio3"><b>Major:</b></p>
         <textarea name = "user_major" id="sub3" rows = "1" cols="20">{{user.major}}</textarea>
-        <p class="first"id = "bio4"><b>Gender:</b></p>
-        <textarea name = "user_gender" id="sub4" rows = "1" cols="20">{{user.gender}}</textarea>
+        <p id="collegetag"><b>College:</b></p>
+        <select name="user_school" id="college">
+          {% for college in colleges %}
+            <option value="{{college.name}}">{{college.name}}</option>
+          {% endfor %}
+        </select>
       </div>
       <div class="item4">
         <p class="first"id = "bio5"><b>Public?</b></p>

@@ -95,6 +95,10 @@ h4 {
 .card {
   display: inline-block;
 }
+.card-img-top{
+  width: 350;
+  height: 350;
+}
 textarea {
   resize: none;
 }

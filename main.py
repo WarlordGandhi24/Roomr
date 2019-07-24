@@ -77,6 +77,10 @@ class MainPage(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
 
+def getList():
+    list = 'http://universities.hipolabs.com/search?country=United%20States'
+    list_resp = urlfetch.Fetch(list).content
+    return json.loads(list_resp)
 
 class ProfileEditPage(webapp2.RequestHandler):
     def get(self):
@@ -90,7 +94,12 @@ class ProfileEditPage(webapp2.RequestHandler):
             else:
                 current_user = User(parent=root_parent())
             print(current_user.about_me)
-            self.response.write(template.render({'user' : current_user}))
+            list = getList()
+            data = {
+                'user': current_user,
+                'colleges': list
+            }
+            self.response.write(template.render(data))
         else:
             self.redirect('/')
     def post(self):
@@ -120,7 +129,6 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.games = self.request.get("user_games")
         new_user.misc = self.request.get("user_misc")
         new_user.study_in_room = self.request.get("study_in_room")
-
         new_user.put()
         self.redirect('/search')
 
@@ -138,34 +146,29 @@ class ProfileViewPage(webapp2.RequestHandler):
         }
         self.response.write(template.render(actualData))
 
-def getList():
-    list = 'http://universities.hipolabs.com/search?country=United%20States'
-    list_resp = urlfetch.Fetch(list).content
-    return json.loads(list_resp)
-
 class SearchPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
         toDisplay = User.query(ancestor=root_parent()).fetch()
-        list = 'http://universities.hipolabs.com/search?country=United%20States'
-        list = getList()
         data = {
-            'users': toDisplay,
-            'colleges': list,
-            'searchOrFilter': False
+            'users': toDisplay
         }
         self.response.write(template.render(data))
 
 class SearchFilter(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
+        user = users.get_current_user()
+        current_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
         noise = self.request.get("noise")
         clean = self.request.get("clean")
         sleep = self.request.get("sleep")
         wake = self.request.get("wake")
         study = self.request.get("study")
+
         items = User.query()
+        items = items.filter(User.school == current_user[0].school)
         if (noise != "Indifferent"):
             items = items.filter(User.noise_level == noise)
         if (clean != "Indifferent"):
