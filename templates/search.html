@@ -62,11 +62,11 @@
       </div>
       <div class="item4">
         {% for user in users %}
-        <div id="wrap" class="card" style="width: 18rem;">
+        <div id="container" class="card" style="width: 18rem;">
           <img class="card-img-top" src={{user.pfpurl}} alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title" id="blacktext">{{user.name}}</h5>
-            <p class="card-text" id="blacktext">{{user.about_me}}</p>
+          <div class="card-body" id="container">
+            <h5 class="card-title" id="wrap">{{user.name}}</h5>
+            <p class="card-text" id="wrap">{{user.about_me}}</p>
             <a href="/profile_view?prof={{user.id}}" class="btn btn-primary">See profile</a>
           </div>
         </div>

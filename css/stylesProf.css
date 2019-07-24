@@ -51,6 +51,10 @@ textarea {
 body {
   background-color: #262626;
 }
+#pfp {
+  width: 350px;
+  height: 350px;
+}
 /*
 #bio1 {
   position: relative;
