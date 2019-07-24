@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/css/stylesProf.css">
+    <link rel="stylesheet" href="/css/styleProfView.css">
   </head>
   <body>
     <script type="text/javascript" src="/scripts/script.js"></script>
@@ -18,17 +18,16 @@
         <br><br>
       </div>
       <div class="item3">
-        <p class= "first" id = "bio1"><b>Name:</b> {{user.name}}</p>
-        <p class= "first" id = "bio2"><b>School:</b> {{user.school}}</p>
-        <p class = "first" id = "bio3"><b>Major:</b> {{user.major}}</b></p>
+          <p class= "first" id = "bio1"><b>Name:</b> {{user.name}}</p>
+          <p class= "first" id = "bio2"><b>School:</b> {{user.school}}</p>
+        <p class = "first" id = "bio3"><b>Major:</b> {{user.major}}</p>
         <p class="first"id = "bio4"><b>Gender:</b> {{user.gender}}</p>
       </div>
-      <div class="item4">
-        <!-- <p class="first"id = "bio5"><b>Public?</b></p> -->
-        <p id = "about"><b>About Me:</b></p>
-        <p>{{user.about_me}}</p>
-      </div>
       <br>
+      <div class="item7">
+        <p id = "leftside"><b>About Me:</b> {{user.about_me}}</b></p>
+
+      </div>
       <div class="item5">
         <h1 id = "pref" >Room Preferences</h1>
         <hr>

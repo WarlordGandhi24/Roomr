@@ -41,6 +41,13 @@ textarea {
 #batton {
   margin-left: auto;
 }
+#rightside {
+  position: relative;
+  float: right;
+}
+#wrap {
+  white-space: nowrap;
+}
 body {
   background-color: #262626;
 }

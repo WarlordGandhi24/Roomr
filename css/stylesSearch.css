@@ -43,6 +43,14 @@ h4 {
   top: 117px;
   left:120px;
 }
+#search {
+  background-color:  rgb(106, 168, 79);
+  border-color:  rgb(106, 168, 79);
+}
+#profile_edit {
+    background-color:  rgb(106, 168, 79);
+    border-color:  rgb(106, 168, 79);
+}
 #sleep {
   position: absolute;
   top: 157px;
@@ -75,6 +83,15 @@ h4 {
 }
 #blacktext {
   color: black;
+}
+#wrap {
+  white-space: nowrap;
+}
+.card {
+  display: inline-block;
+}
+textarea {
+  resize: none;
 }
 body {
   background-color: #262626;
