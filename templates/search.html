@@ -68,11 +68,10 @@
           <!--<p>School: </p>
           <textarea name = "school"id="sub1" rows = "1" cols="20"></textarea>
           -->
-        </form>
-        <br>
         </div>
       <div class="item4">
         <input id="search" class="btn btn-danger" type="submit" value="Submit">
+      </form>
         <br>
         {% for user in users %}
         <div id="container" class="card" style="width: 18rem;">
@@ -83,8 +82,10 @@
           {% endif %}
           <div class="card-body" id="container">
             <h5 class="card-title" id="wrap">{{user.name}}</h5>
-            <p class="card-text text-truncate" id="wrap">{{user.about_me}}</p>
-            <a href="/profile_view?prof={{user.id}}" class="btn btn-primary">See profile</a>
+            <div class="textContainer">
+              <p class="card-text" id="wrap">{{user.about_me}}</p>
+            </div>
+            <a href="/profile_view?prof={{user.id}}" id="submitbtn" class="btn btn-primary">See profile</a>
             <form method = "post" action = "/search">
             <input type = "hidden" name = "otherId" value = "{{user.id}}"/>
             <input type ="submit" class="btn btn-primary">Chat!</a>
@@ -93,6 +94,7 @@
           </div>
         </div>
         {% endfor %}
+
     </div>
     </div>
   </body>

@@ -76,6 +76,7 @@ h4 {
   background-color:  rgb(106, 168, 79);
   border-color:  rgb(106, 168, 79);
 }
+
 #profile_edit {
     background-color:  rgb(106, 168, 79);
     border-color:  rgb(106, 168, 79);
@@ -128,13 +129,40 @@ h4 {
   max-width: 100%;
 }
 .card-img-top{
-  width: 18rem;
+  width: 17.90rem;
   height: 16rem;
+}
+.card-title {
+  position: relative;
+  top: -2.75rem;
+  left:-2rem;
+}
+.card-text {
+  position: relative;
+  top: -3rem;
+  left:-2rem;
+  width: 270px;
+  max-width: 400px;
+  max-height: 70px;
+  word-wrap: break-word;
+  overflow: hidden;
 }
 #container {
     margin-top: 25px;
-    margin-right: 25px;
-    margin-left: 15px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+#submitbtn {
+  position: relative;
+  left: -2.5rem;
+}
+#chatbtn {
+  position: relative;
+  left: 4.55rem;
+}
+.textContainer {
+  width: 1rem;
+  height: 2.5rem;
 }
 textarea {
   resize: none;
