@@ -19,31 +19,26 @@ function startTimer() {
 // Ask the server for the current note immediately.
 
 function fetchUpdatedLog() {
-  console.log(count)
-
-  fetch('/ajax/get_updated_log')
-    .then(function(response) {
-
-      return response.json()
-    })
-    .then(function (myJson) {
-
-      // Update the div.
-      console.log(myJson.msgCount)
-
-      if(myJson.msgCount > count){
-      for(i = myJson.msgCount - count; i < myJson.msgCount; i++){
-      newP = document.createElement('p')
-      newP.innerHTML = myJson.msgs[i]
+	console.log(count)
+	fetch('/ajax/get_updated_log').then(function(response) {
+		return response.json()
+	}).then(function(myJson) {
+		// Update the div.
+		console.log(myJson.msgCount)
+		if (myJson.msgCount > count) {
+			for (i =count; i < myJson.msgCount; i++) {
+				newP = document.createElement('p')
+				newP.innerHTML = myJson.msgs[i]
+        if(myJson.ids[i] != currentUser){
+				newP.classList.add("otherUser")
+      }
       chatbox.appendChild(newP)
-      //  initialCount = myJson.msgCount
-      // Start the timer again for the next request.
-      count = myJson.msgCount
-    }
+			}
 
-    }
-    startTimer()
-    })
+		}
+    count = myJson.msgCount
+		startTimer()
+	})
 }
 
 

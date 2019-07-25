@@ -10,10 +10,15 @@
     <h1>CHAT</h1>
     <form method ="post"  action = "/chat">
     <input type = "text" id ="inputBox" name = "userMsg"/>
+    <input type ="hidden" name ="chatKey" value="{{chatKey}}"/>
     <input id = "send" type = "submit"/>
     <div id = "chatbox">
       {% for chat in chats %}
+      {% if chat.from_id == userId %}
       <p>{{chat.msg}}</p>
+      {% else %}
+      <p class = "otherUser">{{chat.msg}}</p>
+      {% endif %}
       {% endfor %}
     </div>
     <input type="reset" id = "resetBut"value="Reset" />
@@ -21,7 +26,9 @@
 
 
 
+
   <script>var initialCount = {{initialCount}}</script>
+  <script>var currentUser = {{userId}}</script>
   <script type="text/javascript" src="/scripts/chat.js"></script>
 
   </body>
