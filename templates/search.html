@@ -76,7 +76,11 @@
       <div class="item4">
         {% for user in users %}
         <div id="container" class="card" style="width: 18rem;">
+          {% if user.pfpurl %}
           <img class="card-img-top" src="{{user.pfpurl}}" alt="Card image cap">
+          {% else %}
+          <img class="card-img-top" src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" alt="Card image cap">
+          {% endif %}
           <div class="card-body" id="container">
             <h5 class="card-title" id="wrap">{{user.name}}</h5>
             <p class="card-text" id="wrap">{{user.about_me}}</p>
