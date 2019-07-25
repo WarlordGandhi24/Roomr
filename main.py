@@ -26,10 +26,13 @@ def GetUserChat(user):
     else:
         # We didn't find a note, return None
         return None
-class Chats(ndb.Model):
+
+class Chatrooms(ndb.Model):
     from_id = ndb.StringProperty()
     to_id = ndb.StringProperty()
-    combo_id = ndb.StringProperty()
+    date = ndb.DateTimeProperty(auto_now_add=True)
+class Messages(ndb.Model):
+    chatKey = ndb.StringProperty()
     msg = ndb.StringProperty()
     date = ndb.DateTimeProperty(auto_now_add=True)
 class User(ndb.Model):
@@ -142,10 +145,21 @@ class SearchPage(webapp2.RequestHandler):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
         toDisplay = User.query(ancestor=root_parent()).fetch()
+
         data = {
-            'users': toDisplay
+            'users': toDisplay,
+            'userId': user.user_id()
         }
         self.response.write(template.render(data))
+    def post(self):
+        otherId = self.request.get("otherId")
+        user = users.get_current_user()
+        chatroom = Chatrooms.query(ndb.OR(
+        ndb.AND(Chatrooms.from_id == otherId, Chatrooms.to_id == user.user_id()),
+        ndb.AND(Chatrooms.to_id == otherId, Chatrooms.from_id == user.user_id())
+        ), ancestor=root_parent()).fetch()
+
+
 
 class SearchFilter(webapp2.RequestHandler):
     def get(self):
@@ -191,26 +205,34 @@ class AjaxProfilePictureSave(webapp2.RequestHandler):
 class ChatPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
+        otherId = self.request.get("otherId")
         template = JINJA_ENVIRONMENT.get_template('templates/chat.html')
 
-        chats = Chats.query(Chats.from_id == user.user_id(), ancestor=root_parent())
-        chats = chats.order(-Chats.date)
-        chats = chats.fetch()
+        chatroom = Chatrooms.query(ndb.OR(
+        ndb.AND(Chatrooms.from_id == otherId, Chatrooms.to_id == user.user_id()),
+        ndb.AND(Chatrooms.to_id == otherId, Chatrooms.from_id == user.user_id())
+        ), ancestor=root_parent()).fetch()
+        if(len(chatroom) > 0):
+            chatroom = chatroom[0]
+        else:
+            chatroom = Chatrooms(parent=root_parent())
+            chatroom.from_id = user.user_id()
+            chatroom.to_id = otherId
+            chatroom.put()
+        print(chatroom.key.id())
 
-
-        data ={
-        'chats': chats,
-        'initialCount' : len(chats)
+        data = {
+        'chatKey': chatroom.key.id()
+        #'initialCount' : len(chats),
         }
+
         self.response.write(template.render(data))
     def post(self):
-        user = users.get_current_user()
-        newChat = Chats(parent=root_parent())
-        newChat.from_id = user.user_id()
-        newMsg = self.request.get("userMsg")
-        newChat.msg = newMsg
-        newChat.put()
-        self.redirect("/chat")
+        newMsg = Messages(parent=root_parent())
+        newMsg.chatKey = self.request.get("chatKey")
+        newMsg.msg = self.request.get("userMsg")
+        newMsg.put()
+        self.redirect("/chat?key=" + self.request.get("chatKey"))
 
 class AjaxGetNewMsg(webapp2.RequestHandler):
     def get(self):
@@ -219,21 +241,20 @@ class AjaxGetNewMsg(webapp2.RequestHandler):
             # No user is logged in, so don't return any value.
             self.response.status = 401
             return
-        chat = GetUserChat(user)
-        msg = ''
-        if chat is not None:
-            # If there was a current note, update note.
-            msg = chat.msg
 
         # build a dictionary that contains the data that we want to return.
-        chatFromUser = Chats.query(Chats.from_id == user.user_id(),ancestor=root_parent()).fetch()
-        print(chatFromUser)
+
+        chatFromBoth = Chats.query(ndb.OR(Chats.from_id == user.user_id(), Chats.to_id == user.user_id()), ancestor=root_parent()).fetch()
         msgs = []
-        for x in chatFromUser:
-            msgs.append(x.msg)
+        ids = []
+        for z in chatFromBoth:
+            msgs.append(z.msg)
+            ids.append(z.from_id)
+        print(len(chatFromBoth))
         data = {
-        'msgCount': len(chatFromUser),
-        'msgs': msgs
+        'msgCount': len(chatFromBoth),
+        'ids': ids,
+        'msgs': msgs,
         }
         # Note the different content type.
         self.response.headers['Content-Type'] = 'application/json'

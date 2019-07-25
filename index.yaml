@@ -13,6 +13,13 @@ indexes:
 - kind: Chats
   ancestor: yes
   properties:
+  - name: combo_id
+  - name: date
+    direction: desc
+
+- kind: Chats
+  ancestor: yes
+  properties:
   - name: from_id
   - name: date
 
@@ -20,5 +27,12 @@ indexes:
   ancestor: yes
   properties:
   - name: from_id
+  - name: date
+    direction: desc
+
+- kind: Chats
+  ancestor: yes
+  properties:
+  - name: to_id
   - name: date
     direction: desc

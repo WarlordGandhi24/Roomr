@@ -68,6 +68,8 @@
             <h5 class="card-title" id="wrap">{{user.name}}</h5>
             <p class="card-text" id="wrap">{{user.about_me}}</p>
             <a href="/profile_view?prof={{user.id}}" class="btn btn-primary">See profile</a>
+            <a href="/chat?otherId{{user.id}}" class="btn btn-primary">Chat!</a>
+
           </div>
         </div>
         {% endfor %}
