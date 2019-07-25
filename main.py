@@ -290,7 +290,11 @@ class ChatPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         otherId = self.request.get("otherId")
+        otherUser = User.query(User.id == otherId, ancestor=root_parent()).fetch()
+        otherUser = otherUser[0]
+
         print("TEST" + otherId)
+
         template = JINJA_ENVIRONMENT.get_template('templates/chat.html')
         chatroom = Chatrooms.query(ndb.OR(
         ndb.AND(Chatrooms.from_id == otherId, Chatrooms.to_id == user.user_id()),
@@ -302,10 +306,10 @@ class ChatPage(webapp2.RequestHandler):
         messages = Messages.query(str(chatroom.key.id()) == Messages.chatKey, ancestor=root_parent()).order(Messages.date).fetch()
 
 
-
         data = {
             'chatKey': chatroom.key.id(),
             'otherId': otherId,
+            'otherUser': otherUser,
             'messages': messages,
             'userId': user.user_id(),
             'initialCount' : len(messages),
