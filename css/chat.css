@@ -7,3 +7,18 @@
 .otherUser {
   text-align: right;
 }
+
+.msgTag{
+  font-size: 8;
+  color: goldenrod;
+}
+#inputBox{
+  position: relative;;
+  top: 745;
+}
+#chatArea{
+
+}
+body{
+  background-color: #FFFFFF;
+}
