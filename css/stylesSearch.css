@@ -78,6 +78,9 @@ h4 {
 #profile_edit {
     background-color:  rgb(106, 168, 79);
     border-color:  rgb(106, 168, 79);
+    position: absolute;
+    top: 7rem;
+    right: 7rem;
 }
 #sleep {
   position: absolute;
