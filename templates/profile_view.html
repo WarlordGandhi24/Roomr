@@ -15,7 +15,11 @@
         <hr>
       </div>
       <div class="item2">
-        <image src="{{user.pfpurl}}" id="profpic">
+        {% if user.pfpurl == "http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" or user.pfpurl == None %}
+          <image src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" id="profpic">
+        {% else %}
+          <image src="{{user.pfpurl}}" id="profpic">
+        {% endif %}
         <br><br>
       </div>
       <div class="item3">
@@ -61,17 +65,19 @@
           </div>
       </div>
     </form>
-      {% if isRoomie == False %}
-        <form method  = "post" action = "/roomie">
-          <input type="hidden" name="roomieToAdd" value="{{user.id}}">
-          <a href="/roomie?roomieToAdd={{user.id}}"><button id="notsearch" class="btn btn-danger">Add as a potential roomie!</button></a>
-        </form>
-      {% else %}
-        <form method  = "post" action = "/rkill">
-          <input type="hidden" name="roomieToKill" value="{{user.id}}">
-          <h4>You are considering being roomies with this person! Do you want to delete this person from your roomie list?</h4>
-          <a href="/rkill?roomieToKill={{user.id}}"><button id="notsearch" class="btn btn-danger">Delete as a potential roomie!</button></a>
-        </form>
-      {% endif %}
+    <div class="thing">
+    {% if isRoomie == False %}
+      <form method  = "post" action = "/roomie">
+        <input type="hidden" name="roomieToAdd" value="{{user.id}}">
+        <a href="/roomie?roomieToAdd={{user.id}}"><button id="notsearch" class="btn btn-danger">Add as a potential roomie!</button></a>
+      </form>
+    {% else %}
+      <form method  = "post" action = "/rkill">
+        <input type="hidden" name="roomieToKill" value="{{user.id}}">
+        <h4>You are considering being roomies with this person! Do you want to delete this person from your roomie list?</h4>
+        <a href="/rkill?roomieToKill={{user.id}}"><button id="notsearch" class="btn btn-danger">Delete as a potential roomie!</button></a>
+      </form>
+    {% endif %}
+    </div>
   </body>
 </html>

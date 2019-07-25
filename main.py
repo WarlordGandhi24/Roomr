@@ -151,6 +151,8 @@ class ProfileViewPage(webapp2.RequestHandler):
         for items in User.query(ancestor=root_parent()).fetch():
             if (profId == items.id):
                 data = items
+                print("???????????????????????????")
+                print(items.pfpurl)
         actualData = {
             'user': data,
             'isRoomie': isRoomie
@@ -192,7 +194,7 @@ class SearchPage(webapp2.RequestHandler):
             chatroom.from_id = user.user_id()
             chatroom.to_id = otherId
             chatroom.put()
-            self.redirect("/chat?otherId=" + otherId)
+            self.redirect("/chat?otherId=" + otherId + "otherUser?=")
         else:
             self.redirect("/chat?otherId=" + otherId)
 
@@ -290,7 +292,11 @@ class ChatPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         otherId = self.request.get("otherId")
+        otherUser = User.query(User.id == otherId, ancestor=root_parent()).fetch()
+        otherUser = otherUser[0]
+
         print("TEST" + otherId)
+
         template = JINJA_ENVIRONMENT.get_template('templates/chat.html')
         chatroom = Chatrooms.query(ndb.OR(
         ndb.AND(Chatrooms.from_id == otherId, Chatrooms.to_id == user.user_id()),
@@ -299,13 +305,13 @@ class ChatPage(webapp2.RequestHandler):
         print(len(chatroom))
         chatroom = chatroom[0]
 
-        messages = Messages.query(str(chatroom.key.id()) == Messages.chatKey, ancestor=root_parent()).order(-Messages.date).fetch()
-
+        messages = Messages.query(str(chatroom.key.id()) == Messages.chatKey, ancestor=root_parent()).order(Messages.date).fetch()
 
 
         data = {
             'chatKey': chatroom.key.id(),
             'otherId': otherId,
+            'otherUser': otherUser,
             'messages': messages,
             'userId': user.user_id(),
             'initialCount' : len(messages),
@@ -336,7 +342,7 @@ class AjaxGetNewMsg(webapp2.RequestHandler):
         ), ancestor=root_parent()).fetch()
         chatroom = chatroom[0]
         # build a dictionary that contains the data that we want to return.
-        messages = Messages.query(str(chatroom.key.id()) == Messages.chatKey, ancestor=root_parent()).order(-Messages.date).fetch()
+        messages = Messages.query(str(chatroom.key.id()) == Messages.chatKey, ancestor=root_parent()).order(Messages.date).fetch()
         ids = []
         msgs=[]
 
