@@ -4,7 +4,7 @@ from google.appengine.ext import ndb
 from google.appengine.api import users
 from google.appengine.api import images
 from google.appengine.api import urlfetch
-
+from google.appengine.ext import db
 
 import json
 import jinja2
@@ -58,6 +58,9 @@ class User(ndb.Model):
     games = ndb.StringProperty()
     hobbies = ndb.StringProperty()
     firsttime = ndb.StringProperty()
+    roomies = ndb.StringProperty(repeated = True)
+class ChatRemember(ndb.Model):
+    name = ndb.StringProperty()
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -131,6 +134,7 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.games = self.request.get("user_games")
         new_user.misc = self.request.get("user_misc")
         new_user.study_in_room = self.request.get("study_in_room")
+        new_user.roomies = []
         new_user.put()
         self.redirect('/search')
 
@@ -138,25 +142,39 @@ class ProfileViewPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/profile_view.html')
+        current_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
         profId = self.request.get('prof')
+        isRoomie = False
+        if profId in current_user[0].roomies:
+            isRoomie = True
         data = []
         for items in User.query(ancestor=root_parent()).fetch():
             if (profId == items.id):
                 data = items
         actualData = {
-            'user': data
+            'user': data,
+            'isRoomie': isRoomie
         }
         self.response.write(template.render(actualData))
 
 class SearchPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
+        current_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
         toDisplay = User.query(User.private == "Public", ancestor=root_parent()).fetch()
+        friends = []
+        for x in current_user[0].roomies:
+            userToGet = User.query(User.id == x, ancestor=root_parent()).fetch()
+            friends.extend(userToGet)
+            print(userToGet)
         data = {
             'users': toDisplay,
-            'userId': user.user_id()
+            'userId': user.user_id(),
+            'roomies': friends
         }
+        print("!!!!!!!!!!2i3401i90312849124891274812487123")
+        print(friends)
         self.response.write(template.render(data))
 
 
@@ -228,6 +246,26 @@ class SearchFilter(webapp2.RequestHandler):
         }
         self.response.write(template.render(data))
 
+class AddRoomies(webapp2.RequestHandler):
+    def post(self):
+        roomieToAdd = self.request.get("roomieToAdd")
+        roomieToAdd = str(roomieToAdd)
+        user = users.get_current_user()
+        print(roomieToAdd)
+        current_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
+        current_user[0].roomies.append(roomieToAdd)
+        current_user[0].put()
+        self.redirect("/search")
+
+class KillRoomies(webapp2.RequestHandler):
+    def post(self):
+        roomieToKill = self.request.get("roomieToKill")
+        user = users.get_current_user()
+        current_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
+        current_user[0].roomies.remove(roomieToKill)
+        current_user[0].put()
+        self.redirect("/search")
+
 class AjaxProfilePictureSave(webapp2.RequestHandler):
     def post(self):
         #new_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
@@ -254,7 +292,6 @@ class ChatPage(webapp2.RequestHandler):
         otherId = self.request.get("otherId")
         print("TEST" + otherId)
         template = JINJA_ENVIRONMENT.get_template('templates/chat.html')
-
         chatroom = Chatrooms.query(ndb.OR(
         ndb.AND(Chatrooms.from_id == otherId, Chatrooms.to_id == user.user_id()),
         ndb.AND(Chatrooms.to_id == otherId, Chatrooms.from_id == user.user_id())
@@ -267,11 +304,11 @@ class ChatPage(webapp2.RequestHandler):
 
 
         data = {
-        'chatKey': chatroom.key.id(),
-        'otherId': otherId,
-        'messages': messages,
-        'userId': user.user_id(),
-        'initialCount' : len(messages),
+            'chatKey': chatroom.key.id(),
+            'otherId': otherId,
+            'messages': messages,
+            'userId': user.user_id(),
+            'initialCount' : len(messages),
         }
         self.response.write(template.render(data))
     def post(self):
@@ -324,5 +361,7 @@ app = webapp2.WSGIApplication([
     ('/searchfilter', SearchFilter),
     ('/ajax/get_updated_log', AjaxGetNewMsg),
     ('/chat', ChatPage),
-    ('/ajax/update_pfp', AjaxProfilePictureSave)
+    ('/ajax/update_pfp', AjaxProfilePictureSave),
+    ('/roomie', AddRoomies),
+    ('/rkill', KillRoomies)
 ], debug=True)

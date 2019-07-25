@@ -88,13 +88,35 @@
             <a href="/profile_view?prof={{user.id}}" id="submitbtn" class="btn btn-primary">See profile</a>
             <form method = "post" action = "/search">
             <input type = "hidden" name = "otherId" value = "{{user.id}}"/>
-            <input type ="submit" value="Chat!" class="btn btn-primary">
+            <input type ="submit" value="Chat!" class="btn btn-primary" id="chatbtn">
             </form>
 
           </div>
         </div>
         {% endfor %}
-
+        <br>
+        <h1>Roomies</h1>
+        <hr>
+        {% for roomie in roomies %}
+        <div id="container" class="card" style="width: 18rem;">
+          {% if roomie.pfpurl %}
+          <img class="card-img-top" src="{{roomie.pfpurl}}" alt="Card image cap">
+          {% else %}
+          <img class="card-img-top" src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" alt="Card image cap">
+          {% endif %}
+          <div class="card-body" id="container">
+            <h5 class="card-title" id="wrap">{{roomie.name}}</h5>
+            <div class="textContainer">
+              <p class="card-text" id="wrap">{{roomie.about_me}}</p>
+            </div>
+            <a href="/profile_view?prof={{roomie.id}}" id="submitbtn" class="btn btn-primary">See profile</a>
+            <form method = "post" action = "/search">
+            <input type = "hidden" name = "otherId" value = "{{roomie.id}}"/>
+            <input type ="submit" value="Chat!" class="btn btn-primary" id="chatbtn">
+            </form>
+          </div>
+        </div>
+        {% endfor %}
     </div>
     </div>
   </body>

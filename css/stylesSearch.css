@@ -157,8 +157,9 @@ h4 {
   left: -2.5rem;
 }
 #chatbtn {
-  position: absolute;
-  left: 3rem;
+  position: relative;
+  left: 11.33rem;
+  top: -2.33rem
 }
 .textContainer {
   width: 1rem;
