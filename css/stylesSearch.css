@@ -99,8 +99,8 @@ h4 {
   display: inline-block;
 }
 .card-img-top{
-  width: 286px;
-  height: 280px;
+  width: 18rem;
+  height: 16rem;
 }
 textarea {
   resize: none;
