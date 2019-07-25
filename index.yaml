@@ -43,11 +43,3 @@ indexes:
   - name: chatKey
   - name: date
     direction: desc
-
-
-- kind: Messages
-  ancestor: yes
-  properties:
-  - name: chatKey
-  - name: date
-    direction: desc

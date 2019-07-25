@@ -110,7 +110,10 @@
               <p class="card-text" id="wrap">{{roomie.about_me}}</p>
             </div>
             <a href="/profile_view?prof={{roomie.id}}" id="submitbtn" class="btn btn-primary">See profile</a>
-            <a href="/chat?otherId={{roomie.id}}" id="chatbtn" class="btn btn-primary">Chat!</a>
+            <form method = "post" action = "/search">
+            <input type = "hidden" name = "otherId" value = "{{roomie.id}}"/>
+            <input type ="submit" value="Chat!" class="btn btn-primary" id="chatbtn">
+            </form>
 
           </div>
         </div>
