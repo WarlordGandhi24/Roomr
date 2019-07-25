@@ -8,13 +8,14 @@
   </head>
   <body>
     <h1>CHAT</h1>
-    <form method ="post"  action = "/chat">
-    <input type = "text" id ="inputBox" name = "userMsg"/>
+    <form method ="post"  target="dummy" action = "/chat">
+    <input type = "text" placeholder="send a chat" id ="inputBox" name = "userMsg"/>
     <input type ="hidden" name ="chatKey" value="{{chatKey}}"/>
     <input type = "hidden" name = "otherId" value = "{{otherId}}"/>
 
 
     <input id = "send" type = "submit"/>
+  </form>
     <div id = "chatbox">
       {% for message in messages %}
       {% if message.sentId == userId %}
@@ -24,11 +25,11 @@
       {% endif %}
       {% endfor %}
     </div>
-  </form>
 
 
 
 
+  <iframe id = "dummy" name ="dummy"></iframe>
   <script>var initialCount = {{initialCount}}</script>
   <script>var currentUser = {{userId}}</script>
   <script type="text/javascript" src="/scripts/chat.js"></script>

@@ -42,4 +42,10 @@ indexes:
   properties:
   - name: chatKey
   - name: date
+
+- kind: Messages
+  ancestor: yes
+  properties:
+  - name: chatKey
+  - name: date
     direction: desc
