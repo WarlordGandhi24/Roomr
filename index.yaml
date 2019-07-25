@@ -44,6 +44,7 @@ indexes:
   - name: date
     direction: desc
 
+
 - kind: Messages
   ancestor: yes
   properties:
