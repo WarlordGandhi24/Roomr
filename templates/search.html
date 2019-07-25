@@ -15,6 +15,7 @@
       <div class="item1">
         <div class="item1">
           <a href="/"><image id="main" src="https://i.imgur.com/BKPQnUQ.png"></a>
+          <a href="/profile_edit"><button id="profile_edit" class="btn btn-danger"> Edit Profile</button></a>
           <hr>
         </div>
       </div>
@@ -29,7 +30,7 @@
             <option value="Indifferent">Indifferent</option>
           </select>
           <p id ="cleantag">Cleanliness:</p>
-          <select name="clean" id="clean">
+          <select name="clean" id="clean" class="downer">
             <option value="Select" selected hidden>Select</option>
             <option value="Organized">Organized</option>
             <option value="Disorganized">Disorganized</option>
@@ -67,13 +68,12 @@
           <!--<p>School: </p>
           <textarea name = "school"id="sub1" rows = "1" cols="20"></textarea>
           -->
-          <input id="search" class="btn btn-danger" type="submit" value="Submit">
         </form>
+        <br>
         </div>
-      <div class="item3">
-        <a href="/profile_edit"><button id="profile_edit" class="btn btn-danger"> Edit Profile</button></a>
-      </div>
       <div class="item4">
+        <input id="search" class="btn btn-danger" type="submit" value="Submit">
+        <br>
         {% for user in users %}
         <div id="container" class="card" style="width: 18rem;">
           {% if user.pfpurl %}
