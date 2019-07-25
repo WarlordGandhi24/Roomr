@@ -8,7 +8,7 @@
   display: grid;
   grid-template-areas:
     'header header header header'
-    'menu menu menu right'
+    'menu menu menu menu'
     'search search search search';
 }
 p {
@@ -40,36 +40,37 @@ h4 {
 #clean {
   position: absolute;
   top: 157px;
-  left:115px;
+  left:250px;
 }
 #cleantag {
   position: absolute;
   top: 117px;
-  left:115px;
+  left:250px;
 }
 #studytag {
   position: absolute;
   top: 117px;
-  left: 645px;
+  left: 1000px;
 }
 #study {
   position: absolute;
   top: 157px;
-  left: 645px;
+  left: 1000px;
 }
 #gendertag {
   position: absolute;
   top: 117px;
-  left: 860px;
+  left: 1250px;
 }
 #gender {
   position: absolute;
   top: 157px;
-  left: 860px;
+  left: 1250px;
 }
 #search {
   background-color:  rgb(106, 168, 79);
   border-color:  rgb(106, 168, 79);
+  float: right;
 }
 #container {
   background-color:  rgb(106, 168, 79);
@@ -79,28 +80,28 @@ h4 {
     background-color:  rgb(106, 168, 79);
     border-color:  rgb(106, 168, 79);
     position: absolute;
-    top: 7rem;
-    right: 7rem;
+    top: 0rem;
+    right: 0rem;
 }
 #sleep {
   position: absolute;
   top: 157px;
-  left: 255px;
+  left: 500px;
 }
 #sleeptag {
   position: absolute;
   top: 117px;
-  left:255px;
+  left:500px;
 }
 #wake {
   position: absolute;
   top: 157px;
-  left:460px;
+  left:750px;
 }
 #waketag {
   position: absolute;
   top: 117px;
-  left:460px;
+  left:750px;
 }
 #search {
   position: relative;
@@ -129,6 +130,11 @@ h4 {
 .card-img-top{
   width: 18rem;
   height: 16rem;
+}
+#container {
+    margin-top: 25px;
+    margin-right: 25px;
+    margin-left: 15px;
 }
 textarea {
   resize: none;
