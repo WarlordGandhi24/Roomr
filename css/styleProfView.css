@@ -39,6 +39,11 @@ textarea {
 #pref {
   margin-left: 10px;
 }
+#search {
+  position: absolute;
+  left: 125rem;
+  top: 1rem;
+}
 #colorThing {
   margin-left: 10px;
   color: white;
