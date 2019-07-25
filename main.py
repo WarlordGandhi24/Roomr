@@ -164,7 +164,18 @@ class SearchFilter(webapp2.RequestHandler):
         wake = self.request.get("wake")
         study = self.request.get("study")
         gender = self.request.get("gender")
-
+        if (noise == "Select"):
+            noise = "Indifferent"
+        if (clean == "Select"):
+            clean = "Indifferent"
+        if (sleep == "Select"):
+            sleep = "Indifferent"
+        if (wake == "Select"):
+            wake = "Indifferent"
+        if (study == "Select"):
+            study = "Indifferent"
+        if (gender == "Select"):
+            gender = "Indifferent"
         items = User.query()
         items = items.filter(User.school == current_user[0].school)
         if (noise != "Indifferent"):
