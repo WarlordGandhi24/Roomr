@@ -56,6 +56,9 @@ textarea {
 #leftside {
   position: relative;
   float: left;
+  word-wrap: break-word;
+  max-width: 500px;
+  max-height: 500px;
 }
 #wrap {
   white-space: nowrap;
