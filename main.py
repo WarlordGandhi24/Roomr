@@ -151,6 +151,8 @@ class ProfileViewPage(webapp2.RequestHandler):
         for items in User.query(ancestor=root_parent()).fetch():
             if (profId == items.id):
                 data = items
+                print("???????????????????????????")
+                print(items.pfpurl)
         actualData = {
             'user': data,
             'isRoomie': isRoomie

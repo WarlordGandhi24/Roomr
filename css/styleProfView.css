@@ -63,6 +63,9 @@ textarea {
 #wrap {
   white-space: nowrap;
 }
+.thing {
+  background-color: #635419;
+}
 body {
   background-color: #262626;
   color: white;
