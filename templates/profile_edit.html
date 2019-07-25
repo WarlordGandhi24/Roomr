@@ -57,8 +57,19 @@
         </select>
       </div>
       <div class="item4">
-        <p class="first"id = "bio5"><b>Public?</b></p>
-        <input type="checkbox" name="public" value="" id="public">
+        <p class="first"id = "bio5"><b>Privacy</b></p>
+        <select name="private" selected="{{user.private}}">
+          {% if user.private == "Public" %}
+            <option value="Public" selected>Public</option>
+          {% else %}
+            <option value="Public">Public</option>
+          {% endif %}
+          {% if user.private == "Private" %}
+            <option value="Private" selected>Private</option>
+          {% else %}
+            <option value="Private">Private</option>
+          {% endif %}
+        </select>
         <p id = "about"><b>About Me:</b></p>
         <textarea name = "user_about_me"id="aboutme" rows="7" cols="50">{{user.about_me}}</textarea>
       </div>
