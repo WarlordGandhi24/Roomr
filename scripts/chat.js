@@ -1,7 +1,8 @@
 const chatbox = document.querySelector("#chatbox")
 
 var count = initialCount
-
+const urlParams = new URLSearchParams(window.location.search);
+const otherId = urlParams.get('otherId');
 chatbox.addEventListener('keypress', function (key){
   if(key.keycode == 13){
     key.preventDefault()
@@ -17,25 +18,28 @@ function startTimer() {
 
 
 // Ask the server for the current note immediately.
+function makeParaElement(element, index){
+  newP = document.createElement('p')
+  if(element[1] != currentUser){
+    newP.classList.add("otherUser")
+  }
+  newP.innerHTML = element[0]
+  chatbox.appendChild(newP)
+/*  if(myJson.ids[i] != currentUser){
+  newP.classList.add("otherUser")*/
+}
 
 function fetchUpdatedLog() {
 	console.log(count)
-	fetch('/ajax/get_updated_log').then(function(response) {
+	fetch('/ajax/get_updated_log?otherId='+otherId ).then(function(response) {
 		return response.json()
 	}).then(function(myJson) {
 		// Update the div.
 		console.log(myJson.msgCount)
 		if (myJson.msgCount > count) {
-			for (i =count; i < myJson.msgCount; i++) {
-				newP = document.createElement('p')
-				newP.innerHTML = myJson.msgs[i]
-        if(myJson.ids[i] != currentUser){
-				newP.classList.add("otherUser")
-      }
-      chatbox.appendChild(newP)
+      chatbox.innerHTML = ""
+			myJson.msgs.forEach(makeParaElement)
 			}
-
-		}
     count = myJson.msgCount
 		startTimer()
 	})

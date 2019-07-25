@@ -85,7 +85,10 @@
             <h5 class="card-title" id="wrap">{{user.name}}</h5>
             <p class="card-text text-truncate" id="wrap">{{user.about_me}}</p>
             <a href="/profile_view?prof={{user.id}}" class="btn btn-primary">See profile</a>
-            <a href="/chat?otherId{{user.id}}" class="btn btn-primary">Chat!</a>
+            <form method = "post" action = "/search">
+            <input type = "hidden" name = "otherId" value = "{{user.id}}"/>
+            <input type ="submit" class="btn btn-primary">Chat!</a>
+            </form>
 
           </div>
         </div>
