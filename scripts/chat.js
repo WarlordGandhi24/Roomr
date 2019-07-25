@@ -7,7 +7,7 @@ chatbox.addEventListener('keypress', function (key){
   if(key.keycode == 13){
     key.preventDefault()
     document.querySelector("#send").click()
-    document.querySelector("#inputBox").innerHTML = ""
+    //document.querySelector("#inputBox").innerHTML = ""
   }
 })
 
