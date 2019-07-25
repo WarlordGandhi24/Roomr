@@ -40,7 +40,7 @@ class User(ndb.Model):
     gender = ndb.StringProperty()
     school = ndb.StringProperty()
     major = ndb.StringProperty()
-    public = ndb.StringProperty()
+    private = ndb.StringProperty()
     about_me = ndb.StringProperty()
     noise_level = ndb.StringProperty()
     cleanliness = ndb.StringProperty()
@@ -121,7 +121,7 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.wake_time = self.request.get('user_wake_time')
         new_user.music_genre = self.request.get('user_music_genre')
         new_user.hobbies = self.request.get('user_hobbies')
-        new_user.public = self.request.get("user_public")
+        new_user.private = self.request.get("private")
         new_user.movies = self.request.get("user_movies")
         new_user.games = self.request.get("user_games")
         new_user.misc = self.request.get("user_misc")
@@ -147,7 +147,7 @@ class SearchPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
-        toDisplay = User.query(ancestor=root_parent()).fetch()
+        toDisplay = User.query(User.private == "Public", ancestor=root_parent()).fetch()
         data = {
             'users': toDisplay
         }
@@ -178,6 +178,7 @@ class SearchFilter(webapp2.RequestHandler):
             gender = "Indifferent"
         items = User.query()
         items = items.filter(User.school == current_user[0].school)
+        items = items.filter(User.private == "Public")
         if (noise != "Indifferent"):
             items = items.filter(User.noise_level == noise)
         if (clean != "Indifferent"):
