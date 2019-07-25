@@ -43,6 +43,8 @@ textarea {
   position: absolute;
   left: 125rem;
   top: 1rem;
+  background-color:  rgb(106, 168, 79);
+  border-color:  rgb(106, 168, 79);
 }
 #colorThing {
   margin-left: 10px;
