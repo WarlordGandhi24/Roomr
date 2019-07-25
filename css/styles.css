@@ -9,15 +9,15 @@
   max-width: 500px;
   position: relative;
   top: 180;
-  right: -460;
+  right: -33%;
   width:  1000;
 }
 #login {
   position: absolute;
   right: 10px;
   top: 10;
-  background-color:  rgb(106, 168, 79);
-  border-color:  rgb(106, 168, 79);
+  background-image: url('https://66.media.tumblr.com/b8788ad627a3ddf5d7fec491ac0a5fee/tumblr_pq7foqyAIG1uzwgsuo1_400.gif');
+  border-color:  black;
 }
 #logout {
   position: absolute;

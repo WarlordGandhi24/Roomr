@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/styleProfView.css">
   </head>
   <body>
+    <a href="/search"><button id="search" class="btn btn-danger"> View Potential Roomies!</button></a>
     <script type="text/javascript" src="/scripts/script.js"></script>
     <form method  = "post" action = "/profile_edit">
       <div class="grid-container">
@@ -14,14 +15,14 @@
         <hr>
       </div>
       <div class="item2">
-        <image src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" id="pfp">
+        <image src="{{user.pfpurl}}" id="profpic">
         <br><br>
       </div>
       <div class="item3">
-          <p class= "first" id = "bio1"><b>Name:</b> {{user.name}}</p>
-          <p class= "first" id = "bio2"><b>School:</b> {{user.school}}</p>
-        <p class = "first" id = "bio3"><b>Major:</b> {{user.major}}</p>
+        <p class= "first" id = "bio1"><b>Name:</b> {{user.name}}</p>
         <p class="first"id = "bio4"><b>Gender:</b> {{user.gender}}</p>
+        <p class = "first" id = "bio3"><b>Major:</b> {{user.major}}</p>
+        <p class= "first" id = "bio2"><b>School:</b> {{user.school}}</p>
       </div>
       <br>
       <div class="item7">
@@ -45,16 +46,16 @@
           <h1>Hobbies/Interests</h1>
           <hr>
           <p id = "pref"><b>What Kind of Music Do You Like?</b></p>
-          <p>{{user.music_genre}}</p>
+          <p id = "pref">{{user.music_genre}}</p>
           <br>
           <p id = "pref"><b>What Kind of Movies Do You Like?</b></p>
-          <p>{{user.movies}}</p>
+          <p id = "pref">{{user.movies}}</p>
           <br>
           <p id = "pref"><b>What Kind of Games (Sports and Video Games) Do You Like?</b></p>
-          <p>{{user.games}}</p>
+          <p id = "pref">{{user.games}}</p>
           <br>
           <p id = "pref"><b>Misc. Interests</b></p>
-          <p>{{user.misc}}</p>
+          <p id = "pref">{{user.misc}}</p>
           <br>
         </div>
       </div>

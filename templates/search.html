@@ -19,36 +19,49 @@
         </div>
       </div>
       <div class="item2">
-        <h4>Filters</h4>
+        <h4 id="submitbut">Search</h4>
         <form method  = "get" action = "/searchfilter">
           <p>Noise Level:</p>
           <select name="noise">
+            <option value="Select" selected hidden>Select</option>
             <option value="Quiet">Quiet</option>
             <option value="Loud">Loud</option>
             <option value="Indifferent">Indifferent</option>
           </select>
           <p id ="cleantag">Cleanliness:</p>
           <select name="clean" id="clean">
+            <option value="Select" selected hidden>Select</option>
             <option value="Organized">Organized</option>
             <option value="Disorganized">Disorganized</option>
             <option value="Indifferent">Indifferent</option>
           </select>
           <p id="sleeptag">When Do You Go To Sleep?</p>
           <select name="sleep" id="sleep">
+            <option value="Select" selected hidden>Select</option>
             <option value="Early">Early</option>
             <option value="Late">Late</option>
             <option value="Indifferent">Indifferent</option>
           </select>
           <p id="waketag">When Do You Wake Up?</p>
           <select name="wake" id="wake">
+            <option value="Select" selected hidden>Select</option>
             <option value="Early">Early</option>
             <option value="Late">Late</option>
             <option value="Indifferent">Indifferent</option>
           </select>
           <p id="studytag">Do You Study in Your Room?</p>
           <select name="study" id="study">
+            <option value="Select" selected hidden>Select</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
+            <option value="Indifferent">Indifferent</option>
+          </select>
+          <p id="gendertag">Gender</p>
+          <select name="gender" id="gender">
+            <option value="Select" selected hidden>Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
             <option value="Indifferent">Indifferent</option>
           </select>
           <!--<p>School: </p>
@@ -63,10 +76,14 @@
       <div class="item4">
         {% for user in users %}
         <div id="container" class="card" style="width: 18rem;">
-          <img class="card-img-top" src={{user.pfpurl}} alt="Card image cap">
+          {% if user.pfpurl %}
+          <img class="card-img-top" src="{{user.pfpurl}}" alt="Card image cap">
+          {% else %}
+          <img class="card-img-top" src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" alt="Card image cap">
+          {% endif %}
           <div class="card-body" id="container">
             <h5 class="card-title" id="wrap">{{user.name}}</h5>
-            <p class="card-text" id="wrap">{{user.about_me}}</p>
+            <p class="card-text text-truncate" id="wrap">{{user.about_me}}</p>
             <a href="/profile_view?prof={{user.id}}" class="btn btn-primary">See profile</a>
             <a href="/chat?otherId{{user.id}}" class="btn btn-primary">Chat!</a>
 

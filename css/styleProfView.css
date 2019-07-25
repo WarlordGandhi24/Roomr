@@ -29,11 +29,22 @@ h1 {
   width:  100px;
 
 }
+#profpic {
+  width: 350;
+  height: 350;
+}
 textarea {
   resize: none;
 }
 #pref {
   margin-left: 10px;
+}
+#search {
+  position: absolute;
+  left: 125rem;
+  top: 1rem;
+  background-color:  rgb(106, 168, 79);
+  border-color:  rgb(106, 168, 79);
 }
 #colorThing {
   margin-left: 10px;

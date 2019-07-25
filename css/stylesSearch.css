@@ -40,40 +40,67 @@ h4 {
 #clean {
   position: absolute;
   top: 157px;
-  left:120px;
+  left:115px;
 }
 #cleantag {
   position: absolute;
   top: 117px;
-  left:120px;
+  left:115px;
+}
+#studytag {
+  position: absolute;
+  top: 117px;
+  left: 645px;
+}
+#study {
+  position: absolute;
+  top: 157px;
+  left: 645px;
+}
+#gendertag {
+  position: absolute;
+  top: 117px;
+  left: 860px;
+}
+#gender {
+  position: absolute;
+  top: 157px;
+  left: 860px;
 }
 #search {
+  background-color:  rgb(106, 168, 79);
+  border-color:  rgb(106, 168, 79);
+}
+#container {
   background-color:  rgb(106, 168, 79);
   border-color:  rgb(106, 168, 79);
 }
 #profile_edit {
     background-color:  rgb(106, 168, 79);
     border-color:  rgb(106, 168, 79);
+    position: absolute;
+    top: 7rem;
+    right: 7rem;
 }
 #sleep {
   position: absolute;
   top: 157px;
-  left: 260px;
+  left: 255px;
 }
 #sleeptag {
   position: absolute;
   top: 117px;
-  left:260px;
+  left:255px;
 }
 #wake {
   position: absolute;
   top: 157px;
-  left:470px;
+  left:460px;
 }
 #waketag {
   position: absolute;
   top: 117px;
-  left:470px;
+  left:460px;
 }
 #search {
   position: relative;
@@ -89,11 +116,19 @@ h4 {
   color: black;
   white-space: nowrap;
 }
+#submitbut {
+  color: #eb6434;
+}
 .card-text {
   word-wrap: break-word;
 }
 .card {
   display: inline-block;
+  max-width: 100%;
+}
+.card-img-top{
+  width: 18rem;
+  height: 16rem;
 }
 textarea {
   resize: none;

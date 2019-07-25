@@ -3,6 +3,7 @@ import os
 from google.appengine.ext import ndb
 from google.appengine.api import users
 from google.appengine.api import images
+from google.appengine.api import urlfetch
 
 
 import json
@@ -43,7 +44,7 @@ class User(ndb.Model):
     gender = ndb.StringProperty()
     school = ndb.StringProperty()
     major = ndb.StringProperty()
-    public = ndb.StringProperty()
+    private = ndb.StringProperty()
     about_me = ndb.StringProperty()
     noise_level = ndb.StringProperty()
     cleanliness = ndb.StringProperty()
@@ -53,7 +54,7 @@ class User(ndb.Model):
     music_genre = ndb.StringProperty()
     movies = ndb.StringProperty()
     misc = ndb.StringProperty()
-    user_games = ndb.StringProperty()
+    games = ndb.StringProperty()
     hobbies = ndb.StringProperty()
     firsttime = ndb.StringProperty()
 
@@ -62,7 +63,6 @@ class MainPage(webapp2.RequestHandler):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/main.html')
         User.firsttime = True
-        User.pfpurl = "http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png"
         login = users.create_login_url('/profile_edit')
         if(User.firsttime == True):
             login = users.create_login_url('/profile_edit')
@@ -80,20 +80,27 @@ class MainPage(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
 
+def getList():
+    list = 'http://universities.hipolabs.com/search?country=United%20States'
+    list_resp = urlfetch.Fetch(list).content
+    return json.loads(list_resp)
 
 class ProfileEditPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user != None:
             template = JINJA_ENVIRONMENT.get_template('templates/profile_edit.html')
-
             current_user = User.query(User.id == user.user_id()).fetch()
             if(len(current_user) > 0):
                 current_user = current_user[0]
             else:
                 current_user = User(parent=root_parent())
-            print(current_user.about_me)
-            self.response.write(template.render({'user' : current_user}))
+            list = getList()
+            data = {
+                'user': current_user,
+                'colleges': list,
+            }
+            self.response.write(template.render(data))
         else:
             self.redirect('/')
     def post(self):
@@ -118,7 +125,7 @@ class ProfileEditPage(webapp2.RequestHandler):
         new_user.wake_time = self.request.get('user_wake_time')
         new_user.music_genre = self.request.get('user_music_genre')
         new_user.hobbies = self.request.get('user_hobbies')
-        new_user.public = self.request.get("user_public")
+        new_user.private = self.request.get("private")
         new_user.movies = self.request.get("user_movies")
         new_user.games = self.request.get("user_games")
         new_user.misc = self.request.get("user_misc")
@@ -144,8 +151,7 @@ class SearchPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
-        toDisplay = User.query(ancestor=root_parent()).fetch()
-
+        toDisplay = User.query(User.private == "Public", ancestor=root_parent()).fetch()
         data = {
             'users': toDisplay,
             'userId': user.user_id()
@@ -164,18 +170,29 @@ class SearchPage(webapp2.RequestHandler):
 class SearchFilter(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('templates/search.html')
-        items = None
+        user = users.get_current_user()
+        current_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
         noise = self.request.get("noise")
-        print(noise)
         clean = self.request.get("clean")
-        print(clean)
         sleep = self.request.get("sleep")
-        print(sleep)
         wake = self.request.get("wake")
-        print(wake)
         study = self.request.get("study")
-        print(study)
+        gender = self.request.get("gender")
+        if (noise == "Select"):
+            noise = "Indifferent"
+        if (clean == "Select"):
+            clean = "Indifferent"
+        if (sleep == "Select"):
+            sleep = "Indifferent"
+        if (wake == "Select"):
+            wake = "Indifferent"
+        if (study == "Select"):
+            study = "Indifferent"
+        if (gender == "Select"):
+            gender = "Indifferent"
         items = User.query()
+        items = items.filter(User.school == current_user[0].school)
+        items = items.filter(User.private == "Public")
         if (noise != "Indifferent"):
             items = items.filter(User.noise_level == noise)
         if (clean != "Indifferent"):
@@ -186,6 +203,8 @@ class SearchFilter(webapp2.RequestHandler):
             items = items.filter(User.wake_time == wake)
         if (study != "Indifferent"):
             items = items.filter(User.study_in_room == study)
+        if (gender != "Indifferent"):
+            items = items.filter(User.gender == gender)
         items = items.fetch()
          # and (User.cleanliness == clean) and (User.sleep_time == sleep) and (User.wake_time == wake) and (User.study_in_room == study)).fetch()
         #print(items)
@@ -197,10 +216,23 @@ class SearchFilter(webapp2.RequestHandler):
 
 class AjaxProfilePictureSave(webapp2.RequestHandler):
     def post(self):
-        user = users.get_current_user()
+        #new_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
         #data = {'url': note}
         #User.pfpurl = self.request.get("answer")
-        User.pfpurl = json.loads(self.request.body)["answer"]
+        user = users.get_current_user()
+
+        new_user = User.query(User.id == user.user_id(), ancestor=root_parent()).fetch()
+        if(len(new_user) > 0):
+            new_user = new_user[0]
+        else:
+            new_user = User(parent=root_parent())
+            new_user.id = user.user_id()
+
+        new_user.pfpurl = json.loads(self.request.body)["answer"]
+        print new_user
+        new_user.put()
+        print(new_user.pfpurl)
+
 
 class ChatPage(webapp2.RequestHandler):
     def get(self):
