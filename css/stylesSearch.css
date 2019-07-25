@@ -152,6 +152,14 @@ h4 {
     margin-right: 20px;
     margin-left: 20px;
 }
+#submitbtn {
+  position: relative;
+  left: -2.5rem;
+}
+#chatbtn {
+  position: relative;
+  left: 4.55rem;
+}
 .textContainer {
   width: 1rem;
   height: 2.5rem;
