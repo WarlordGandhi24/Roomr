@@ -7,23 +7,22 @@
 
   </head>
   <body>
-    <h1>Chat</h1>
-    <hr>
-    <div id="chatWindow">
-      <form method ="post"  action = "/chat">
-      <input type = "text" id ="inputBox" name = "userMsg"/>
-      <input type ="hidden" name ="chatKey" value="{{chatKey}}"/>
-      <input id = "send" type = "submit"/>
-      <div id = "chatbox">
-        {% for chat in chats %}
-        {% if chat.from_id == userId %}
-        <p>{{chat.msg}}</p>
-        {% else %}
-        <p class = "otherUser">{{chat.msg}}</p>
-        {% endif %}
-        {% endfor %}
-      </div>
-      <input type="reset" id = "resetBut"value="Reset" />
+    <h1>CHAT</h1>
+    <form method ="post"  action = "/chat">
+    <input type = "text" id ="inputBox" name = "userMsg"/>
+    <input type ="hidden" name ="chatKey" value="{{chatKey}}"/>
+    <input type = "hidden" name = "otherId" value = "{{otherId}}"/>
+
+
+    <input id = "send" type = "submit"/>
+    <div id = "chatbox">
+      {% for message in messages %}
+      {% if message.sentId == userId %}
+      <p>{{message.msg}}</p>
+      {% else %}
+      <p class = "otherUser">{{message.msg}}</p>
+      {% endif %}
+      {% endfor %}
     </div>
   </form>
 
@@ -33,6 +32,5 @@
   <script>var initialCount = {{initialCount}}</script>
   <script>var currentUser = {{userId}}</script>
   <script type="text/javascript" src="/scripts/chat.js"></script>
-
   </body>
 </html>

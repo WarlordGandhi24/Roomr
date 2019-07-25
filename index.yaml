@@ -36,3 +36,10 @@ indexes:
   - name: to_id
   - name: date
     direction: desc
+
+- kind: Messages
+  ancestor: yes
+  properties:
+  - name: chatKey
+  - name: date
+    direction: desc

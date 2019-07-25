@@ -34,6 +34,7 @@ class Chatrooms(ndb.Model):
     date = ndb.DateTimeProperty(auto_now_add=True)
 class Messages(ndb.Model):
     chatKey = ndb.StringProperty()
+    sentId = ndb.StringProperty()
     msg = ndb.StringProperty()
     date = ndb.DateTimeProperty(auto_now_add=True)
 class User(ndb.Model):
@@ -175,13 +176,26 @@ class SearchPage(webapp2.RequestHandler):
         print("!!!!!!!!!!2i3401i90312849124891274812487123")
         print(friends)
         self.response.write(template.render(data))
+
+
     def post(self):
         otherId = self.request.get("otherId")
+        print(otherId)
         user = users.get_current_user()
         chatroom = Chatrooms.query(ndb.OR(
         ndb.AND(Chatrooms.from_id == otherId, Chatrooms.to_id == user.user_id()),
         ndb.AND(Chatrooms.to_id == otherId, Chatrooms.from_id == user.user_id())
         ), ancestor=root_parent()).fetch()
+        print(chatroom)
+        if(len(chatroom) == 0):
+            chatroom = Chatrooms(parent=root_parent())
+            chatroom.from_id = user.user_id()
+            chatroom.to_id = otherId
+            chatroom.put()
+            self.redirect("/chat?otherId=" + otherId)
+        else:
+            self.redirect("/chat?otherId=" + otherId)
+
 
 
 
@@ -276,32 +290,36 @@ class ChatPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         otherId = self.request.get("otherId")
+        print("TEST" + otherId)
         template = JINJA_ENVIRONMENT.get_template('templates/chat.html')
         chatroom = Chatrooms.query(ndb.OR(
         ndb.AND(Chatrooms.from_id == otherId, Chatrooms.to_id == user.user_id()),
         ndb.AND(Chatrooms.to_id == otherId, Chatrooms.from_id == user.user_id())
         ), ancestor=root_parent()).fetch()
-        if(len(chatroom) > 0):
-            chatroom = chatroom[0]
-        else:
-            chatroom = Chatrooms(parent=root_parent())
-            chatroom.from_id = user.user_id()
-            chatroom.to_id = otherId
-            chatroom.put()
-        print(chatroom.key.id())
+        print(len(chatroom))
+        chatroom = chatroom[0]
+
+        messages = Messages.query(str(chatroom.key.id()) == Messages.chatKey, ancestor=root_parent()).order(-Messages.date).fetch()
+
+
 
         data = {
-            'chatKey': chatroom.key.id()
-        #'initialCount' : len(chats),
+            'chatKey': chatroom.key.id(),
+            'otherId': otherId,
+            'messages': messages,
+            'userId': user.user_id(),
+            'initialCount' : len(messages),
         }
-
         self.response.write(template.render(data))
     def post(self):
+        user = users.get_current_user()
         newMsg = Messages(parent=root_parent())
         newMsg.chatKey = self.request.get("chatKey")
+        otherId = self.request.get("otherId")
         newMsg.msg = self.request.get("userMsg")
+        newMsg.sentId = user.user_id()
         newMsg.put()
-        self.redirect("/chat?key=" + self.request.get("chatKey"))
+        self.redirect("/chat?otherId=" + otherId)
 
 class AjaxGetNewMsg(webapp2.RequestHandler):
     def get(self):
@@ -310,19 +328,22 @@ class AjaxGetNewMsg(webapp2.RequestHandler):
             # No user is logged in, so don't return any value.
             self.response.status = 401
             return
-
+        otherId = self.request.get("otherId")
+        print(otherId)
+        chatroom = Chatrooms.query(ndb.OR(
+        ndb.AND(Chatrooms.from_id == otherId, Chatrooms.to_id == user.user_id()),
+        ndb.AND(Chatrooms.to_id == otherId, Chatrooms.from_id == user.user_id())
+        ), ancestor=root_parent()).fetch()
+        chatroom = chatroom[0]
         # build a dictionary that contains the data that we want to return.
-
-        chatFromBoth = Chats.query(ndb.OR(Chats.from_id == user.user_id(), Chats.to_id == user.user_id()), ancestor=root_parent()).fetch()
-        msgs = []
+        messages = Messages.query(str(chatroom.key.id()) == Messages.chatKey, ancestor=root_parent()).order(-Messages.date).fetch()
         ids = []
-        for z in chatFromBoth:
-            msgs.append(z.msg)
-            ids.append(z.from_id)
-        print(len(chatFromBoth))
+        msgs=[]
+
+        for x in messages:
+            msgs.append([x.msg, x.sentId])
         data = {
-        'msgCount': len(chatFromBoth),
-        'ids': ids,
+        'msgCount': len(messages),
         'msgs': msgs,
         }
         # Note the different content type.
