@@ -11,7 +11,7 @@
   </head>
   <body>
     <a href="/search" id="submitbtn"><button class="btn btn-danger">Back to search!</button></a>
-    <h1 id="headchat">CHAT with {{otherUser.name}}</h1>
+    <h1 id="headchat">Chat with {{otherUser.name}}</h1>
     <hr>
     <form method ="post"  target="dummy" action = "/chat">
     <input type = "text" placeholder="send a chat to {{otherUser.name}}" id ="inputBox" name = "userMsg"/>
@@ -27,7 +27,7 @@
       <p class = "msgTag">me</p>
       <p class = "msg">{{message.msg}}</p>
       {% else %}
-      <p class = "otherUser msgTag">{{otherUser.name}}</p>
+      <p class = "otherTag">{{otherUser.name}}</p>
       <p class = "otherUser otherMsg">{{message.msg}}</p>
       {% endif %}
       {% endfor %}

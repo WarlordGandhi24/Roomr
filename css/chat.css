@@ -14,20 +14,31 @@
 }
 .msg {
   padding-left: 15px;
+  padding-right: 15px;
   color: black;
   border-radius: 25px;
   background-color: white;
-  max-width: 250px;
+  max-width: 20%;
   word-wrap: break-word;
 }
 #headchat {
   color: white;
 }
+.otherTag {
+  font-size: 8;
+  color: goldenrod;
+  margin-left: 80%;
+}
 .otherMsg {
   border-radius: 25px;
   background-color: white;
   word-wrap: break-word;
-  max-width: 250px;
+  margin-left: 80%;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: left;
+  word-wrap: break-word;
+  margin-right: 15px;
 }
 #inputBox{
   position: relative;;
