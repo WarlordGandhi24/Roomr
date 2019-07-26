@@ -97,9 +97,6 @@
         <br>
         <h1>Roomies</h1>
         <hr>
-        {% if roomies[0] == None %}
-          <p>You don't have any roomies added! Search for some profiles to add people as potential roomies.</p>
-        {% else %}
           {% for roomie in roomies %}
           <div id="container" class="card" style="width: 18rem;">
             {% if roomie.pfpurl %}
@@ -120,7 +117,6 @@
             </div>
           </div>
           {% endfor %}
-        {% endif %}
     </div>
     </div>
   </body>
