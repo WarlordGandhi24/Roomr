@@ -65,6 +65,7 @@ textarea {
 }
 .thing {
   background-color: #635419;
+  max-width: 400px;
 }
 body {
   background-color: #262626;
