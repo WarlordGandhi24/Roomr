@@ -10,7 +10,7 @@
 
 .msgTag{
   font-size: 8;
-  color: goldenrod;
+  color: #69d60f;
 }
 .msg {
   padding-left: 15px;
@@ -27,7 +27,7 @@
 }
 .otherTag {
   font-size: 8;
-  color: goldenrod;
+  color: #69d60f;
   margin-left: 80%;
 }
 .otherMsg {
@@ -50,5 +50,5 @@
 }
 body{
   background-color: #262626;
-  color: white;
+  color: black;
 }

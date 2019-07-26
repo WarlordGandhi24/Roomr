@@ -40,6 +40,10 @@
               <a href="/rkill?roomieToKill={{user.id}}"><button id="notsearch" class="btn btn-danger">Delete as a potential roomie!</button></a>
             </form>
           {% endif %}
+          <form method = "post" action = "/search">
+            <input type = "hidden" name = "otherId" value = "{{user.id}}"/>
+            <input type ="submit" value="Chat!" class="btn btn-primary" id="chatbtn">
+          </form>
       </div>
       <br>
       <div class="item7">
