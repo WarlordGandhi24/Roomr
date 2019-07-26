@@ -151,8 +151,6 @@ class ProfileViewPage(webapp2.RequestHandler):
         for items in User.query(ancestor=root_parent()).fetch():
             if (profId == items.id):
                 data = items
-                print("???????????????????????????")
-                print(items.pfpurl)
         actualData = {
             'user': data,
             'isRoomie': isRoomie
@@ -194,7 +192,7 @@ class SearchPage(webapp2.RequestHandler):
             chatroom.from_id = user.user_id()
             chatroom.to_id = otherId
             chatroom.put()
-            self.redirect("/chat?otherId=" + otherId + "otherUser?=")
+            self.redirect("/chat?otherId=" + otherId)
         else:
             self.redirect("/chat?otherId=" + otherId)
 
