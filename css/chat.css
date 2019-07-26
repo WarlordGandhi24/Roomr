@@ -12,6 +12,14 @@
   font-size: 8;
   color: goldenrod;
 }
+.msg {
+  padding-left: 15px;
+  color: black;
+  border-radius: 25px;
+  background-color: white;
+  max-width: 250px;
+  word-wrap: break-word;
+}
 #inputBox{
   position: relative;;
   top: 745;
@@ -20,5 +28,6 @@
 
 }
 body{
-  background-color: #FFFFFF;
+  background-color: #262626;
+  color: white;
 }
