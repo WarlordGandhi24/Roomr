@@ -3,12 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/chat.css">
 
   </head>
   <body>
-    <a href="/search" id="submitbtn" class="btn btn-primary">Back to search!</a>
-    <h1>CHAT with {{otherUser.name}}</h1>
+    <a href="/search" id="submitbtn"><button class="btn btn-danger">Back to search!</button></a>
+    <h1 id="headchat">CHAT with {{otherUser.name}}</h1>
     <hr>
     <form method ="post"  target="dummy" action = "/chat">
     <input type = "text" placeholder="send a chat to {{otherUser.name}}" id ="inputBox" name = "userMsg"/>

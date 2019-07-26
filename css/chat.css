@@ -20,6 +20,9 @@
   max-width: 250px;
   word-wrap: break-word;
 }
+#headchat {
+  color: white;
+}
 .otherMsg {
   border-radius: 25px;
   background-color: white;
@@ -34,5 +37,5 @@
 }
 body{
   background-color: #262626;
-  color: white;
+  color: black;
 }
