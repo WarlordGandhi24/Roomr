@@ -20,6 +20,11 @@
   max-width: 250px;
   word-wrap: break-word;
 }
+.otherMsg {
+  border-radius: 25px;
+  background-color: white;
+  word-wrap: break-word;
+}
 #inputBox{
   position: relative;;
   top: 745;
