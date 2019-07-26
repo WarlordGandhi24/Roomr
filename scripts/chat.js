@@ -21,8 +21,8 @@ function makeParaElement(element, index){
   newP = document.createElement('p')
   user = document.createElement('p')
   if(element[1] != currentUser){
-    user.classList.add("otherTag")
     user.innerHTML = element[2]
+    user.classList.add("otherTag")
     newP.classList.add("otherUser")
     newP.classList.add("otherMsg")
   }else{
