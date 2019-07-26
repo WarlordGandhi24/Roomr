@@ -24,7 +24,7 @@
     <div id = "chatbox">
       {% for message in messages %}
       {% if message.sentId == userId %}
-      <p class = "msgTag">me</p>
+      <p class = "msgTag">You</p>
       <p class = "msg">{{message.msg}}</p>
       {% else %}
       <p class = "otherTag">{{otherUser.name}}</p>
