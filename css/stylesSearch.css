@@ -156,11 +156,11 @@ h4 {
 }
 #submitbtn {
   position: relative;
-  left: -2.5rem;
+  left: -2rem;
 }
 #chatbtn {
   position: relative;
-  left: 11.33rem;
+  left: 11rem;
   top: -2.5rem
 }
 .textContainer {
