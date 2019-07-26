@@ -6,8 +6,9 @@ const otherId = urlParams.get('otherId');
 chatbox.addEventListener('keypress', function (key){
   if(key.keycode == 13){
     key.preventDefault()
+    document.querySelector("#reset").click()
     document.querySelector("#send").click()
-    //document.querySelector("#inputBox").innerHTML = ""
+
   }
 })
 
@@ -20,13 +21,21 @@ function startTimer() {
 // Ask the server for the current note immediately.
 function makeParaElement(element, index){
   newP = document.createElement('p')
+  user = document.createElement('p')
   if(element[1] != currentUser){
+    user.classList.add("otherUser")
+    user.classList.add("msgTag")
+    user.innerHTML = element[2]
     newP.classList.add("otherUser")
+  }else{
+    user.classList.add("msgTag")
+    user.innerHTML = "me"
   }
+
   newP.innerHTML = element[0]
+  chatbox.appendChild(user)
   chatbox.appendChild(newP)
-/*  if(myJson.ids[i] != currentUser){
-  newP.classList.add("otherUser")*/
+
 }
 
 function fetchUpdatedLog() {

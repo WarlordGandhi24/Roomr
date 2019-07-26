@@ -343,12 +343,17 @@ class AjaxGetNewMsg(webapp2.RequestHandler):
         messages = Messages.query(str(chatroom.key.id()) == Messages.chatKey, ancestor=root_parent()).order(Messages.date).fetch()
         ids = []
         msgs=[]
-
+        otherUser = User.query(User.id == otherId, ancestor=root_parent()).fetch()
+        otherUser = otherUser[0]
+        otherUser = otherUser.name
         for x in messages:
-            msgs.append([x.msg, x.sentId])
+            msgs.append([x.msg, x.sentId, otherUser])
+
+
         data = {
         'msgCount': len(messages),
         'msgs': msgs,
+
         }
         # Note the different content type.
         self.response.headers['Content-Type'] = 'application/json'
