@@ -7,9 +7,11 @@
 
   </head>
   <body>
-    <a href="/search" id="submitbtn" class="btn btn-primary">Back to search!</a>
-    <h1>CHAT with {{otherUser.name}}</h1>
-    <form method ="post"  id = "chat"target="dummy" action = "/chat">
+
+    <a href="/search" id="submitbtn"><button class="btn btn-danger">Back to search!</button></a>
+    <h1 id="headchat">Chat with {{otherUser.name}}</h1>
+    <hr>
+    <form method ="post" id="chat"  target="dummy" action = "/chat">
     <input autocomplete="off" type = "text" placeholder="send a chat to {{otherUser.name}}" id ="inputBox" name = "userMsg"/>
     <input type ="hidden" name ="chatKey" value="{{chatKey}}"/>
     <input type = "hidden" name = "otherId" value = "{{otherId}}"/>
@@ -19,11 +21,12 @@
     <div id = "chatbox">
       {% for message in messages %}
       {% if message.sentId == userId %}
-      <p class = "msgTag">me</p>
-      <p>{{message.msg}}</p>
+      <p class = "msgTag">You</p>
+      <p class = "msg">{{message.msg}}</p>
       {% else %}
-      <p class = "otherUser msgTag">{{otherUser.name}}</p>
-      <p class = "otherUser">{{message.msg}}</p>
+      <p class = "otherTag">{{otherUser.name}}</p>
+      <p class = "otherUser otherMsg">{{message.msg}}</p>
+
       {% endif %}
       {% endfor %}
     </div>

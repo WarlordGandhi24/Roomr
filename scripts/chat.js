@@ -27,7 +27,9 @@ function makeParaElement(element, index){
     newP.classList.add("otherUser")
   }else{
     user.classList.add("msgTag")
-    user.innerHTML = "me"
+
+    user.innerHTML = "You"
+    newP.classList.add("msg")
   }
 
   newP.innerHTML = element[0]
