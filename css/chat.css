@@ -27,6 +27,7 @@
   border-radius: 25px;
   background-color: white;
   word-wrap: break-word;
+  max-width: 250px;
 }
 #inputBox{
   position: relative;;
