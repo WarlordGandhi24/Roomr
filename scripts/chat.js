@@ -1,19 +1,17 @@
 const chatbox = document.querySelector("#chatbox")
-
+const inputBox = document.querySelector("#inputBox")
+const form = document.querySelector("#chat")
 var count = initialCount
 const urlParams = new URLSearchParams(window.location.search);
 const otherId = urlParams.get('otherId');
-chatbox.addEventListener('keypress', function (key){
-  if(key.keycode == 13){
-    key.preventDefault()
-    document.querySelector("#reset").click()
-    document.querySelector("#send").click()
 
-  }
+form.addEventListener('submit', function (){
+    console.log("TEST")
+
 })
 
 function startTimer() {
-  const microseconds = 2000  // 2 seconds
+  const microseconds = 800  // 2 seconds
   window.setTimeout(fetchUpdatedLog, microseconds)
 }
 
@@ -50,6 +48,7 @@ function fetchUpdatedLog() {
 			myJson.msgs.forEach(makeParaElement)
 			}
     count = myJson.msgCount
+    inputBox.value = ""
 		startTimer()
 	})
 }
