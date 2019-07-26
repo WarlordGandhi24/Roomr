@@ -1,20 +1,20 @@
 const chatbox = document.querySelector("#chatbox")
 const inputBox = document.querySelector("#inputBox")
 const form = document.querySelector("#chat")
+var enterPressed = false;
 var count = initialCount
 const urlParams = new URLSearchParams(window.location.search);
 const otherId = urlParams.get('otherId');
 
-form.addEventListener('submit', function (){
-    console.log("TEST")
-
-})
 
 function startTimer() {
   const microseconds = 800  // 2 seconds
   window.setTimeout(fetchUpdatedLog, microseconds)
 }
 
+form.addEventListener('submit', function(){
+  enterPressed = true;
+})
 
 // Ask the server for the current note immediately.
 function makeParaElement(element, index){
@@ -47,9 +47,12 @@ function fetchUpdatedLog() {
       chatbox.innerHTML = ""
 			myJson.msgs.forEach(makeParaElement)
 			}
+      if(enterPressed == true){
+        inputBox.value =""
+        enterPressed = false;
+      }
     count = myJson.msgCount
-    inputBox.value = ""
-		startTimer()
+    startTimer()
 	})
 }
 
