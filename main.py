@@ -303,7 +303,7 @@ class ChatPage(webapp2.RequestHandler):
         print(len(chatroom))
         chatroom = chatroom[0]
 
-        messages = Messages.query(str(chatroom.key.id()) == Messages.chatKey, ancestor=root_parent()).order(Messages.date).fetch()
+        messages = Messages.query(str(chatroom.key.id()) == Messages.chatKey, ancestor=root_parent()).order(-Messages.date).fetch()
 
 
         data = {
@@ -340,7 +340,7 @@ class AjaxGetNewMsg(webapp2.RequestHandler):
         ), ancestor=root_parent()).fetch()
         chatroom = chatroom[0]
         # build a dictionary that contains the data that we want to return.
-        messages = Messages.query(str(chatroom.key.id()) == Messages.chatKey, ancestor=root_parent()).order(Messages.date).fetch()
+        messages = Messages.query(str(chatroom.key.id()) == Messages.chatKey, ancestor=root_parent()).order(-Messages.date).fetch()
         ids = []
         msgs=[]
         otherUser = User.query(User.id == otherId, ancestor=root_parent()).fetch()

@@ -14,6 +14,7 @@ function startTimer() {
 
 form.addEventListener('submit', function(){
   enterPressed = true;
+
 })
 
 // Ask the server for the current note immediately.
